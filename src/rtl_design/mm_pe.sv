@@ -4,35 +4,29 @@
 // Designer : wangziyao1@sjtu.edu.cn
 // Revision History: 
 // V0 date:Initial version @ 2024/3/28
+// V1 data:Add flush/valid signal @ 2024/4/2
 // ==================================================================== 
 
 module pe(
     input logic clk,
     input logic rst_n,
-    
-    //input logic flush,
+    input logic flush,
 
-    input logic [7:0] row_i,
-    input logic [7:0] col_i,
+    input logic signed [7:0] row_i,
+    input logic signed [7:0] col_i,
+    input logic din_valid,
+
     output logic [7:0] row_o,
     output logic [7:0] col_o,
+    output logic dout_valid,
 
-    output [31:0] res
+    output logic signed [31:0] res
 );
 
 always_ff @(posedge clk) begin
-    if (!rst_n) begin
-        row_o <= 0;
-        col_o <= 0;
-    end else begin
-        if (flush) begin
-            row_o <= 0;
-            col_o <= 0;
-        end else begin
-            row_o <= row_i;
-            col_o <= col_i;
-        end
-    end
+    row_o <= row_i;
+    col_o <= col_i;
+    dout_valid <= din_valid;
 end
 
 always_ff @(posedge clk) begin
@@ -40,9 +34,13 @@ always_ff @(posedge clk) begin
         res <= 0;
     end else begin
         if (flush) begin
-            res <= 0;
+            res <= 0;                               // reset res
         end else begin
-            res <= row_i * col_i + res;
+            if (din_valid) begin
+                res <= row_i * col_i + res;
+            end else begin
+                res <= res;                         // keep res     
+            end
         end
     end
 end
