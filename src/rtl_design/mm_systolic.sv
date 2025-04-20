@@ -6,6 +6,7 @@
 // Revision History: 
 // V0 date:Initial version @ 2024/4/1   :) Happy April Fool's Day :)
 // V1 date:Fix the bug and complete testbench @ 2024/4/2
+// V2 date:Add flush signal from linear layer to reset @ 2024/4/20
 // Reference:
 // https://blog.csdn.net/wordwarwordwar/article/details/103537996
 // ==================================================================== 
@@ -17,7 +18,10 @@ module mm_systolic(
 
     input logic [63:0] row_bar,
     input logic [63:0] col_bar,
-    input logic bar_valid,         
+    input logic bar_valid,     
+
+    output logic [31:0] res [0:7][0:7],
+        
     input logic flush               // pull up one cycle to flush PE result
 );
 
@@ -112,7 +116,7 @@ end
 wire [7:0] row_i [0:8][0:8];
 wire [7:0] col_i [0:8][0:8];
 wire din_valid [0:8][0:8];
-reg [31:0] res [0:7][0:7];
+
 
 // systolic array input
 assign col_i[0][0] = col_0;

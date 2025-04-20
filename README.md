@@ -6,5 +6,3 @@
 ## Accelerator Top Level
 <img src="img\cmpt_arch.svg" alt="sys_arch">
 
-## Scaled Dot-Product Attention
-<img src="img\cmpt_head_arch.svg" alt="sys_arch">
