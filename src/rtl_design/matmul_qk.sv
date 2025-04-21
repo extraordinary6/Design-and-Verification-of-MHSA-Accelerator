@@ -1,15 +1,6 @@
 //===================================================================== 
 // Description: 
-// linear layer : X * W -> Q/K/V
-//  |-- FSM
-//  |   |-- loop counter
-//  |   |-- ctrl logic 
-//  |   |-- fsm
-//  |-- address generator
-//  |   |-- read address
-//  |   |-- write address
-//  |-- systolic
-//  |-- debug logic(opt.)
+// mem pre-simulation model
 // Designer : wangziyao1@sjtu.edu.cn
 // Revision History: 
 // V0 date:Initial version @ 2024/4/17

@@ -1,6 +1,6 @@
 `timescale 1ps/1ps
 
-module linear_tb (
+module wrapper_tb (
 );
 
     //clk and rst_n
@@ -14,6 +14,13 @@ module linear_tb (
     logic [63:0] data_in_bar1;
     logic [31:0] addr_bar1;
     logic [63:0] data_out_bar1;
+    logic soc_write_en;                       //1 for write, 0 for read
+    logic [63:0] soc_data_in;
+    logic [31:0] soc_addr;
+    logic [63:0] soc_data_out;
+    logic done;
+    logic [31:0] input_base;
+    logic [31:0] output_base;
     logic start;
     logic linear_done;
     integer res_file;
@@ -28,40 +35,24 @@ module linear_tb (
         forever #5 clk = ~clk;
     end
 
-    linear dut (
+    mhsa_acc_wrapper mhsa_acc_wrapper_inst(
         .clk(clk),
         .rst_n(rst_n),
 
+        // control signals
+        .done(done),
         .start(start),
-        .done(linear_done),
+        .input_base(input_base),
+        .output_base(output_base),
 
-        .write_en_bar0(write_en_bar0),
-        .data_in_bar0(data_in_bar0),
-        .addr_bar0(addr_bar0),
-        .data_out_bar0(data_out_bar0),
-
-        .write_en_bar1(write_en_bar1),
-        .data_in_bar1(data_in_bar1),
-        .addr_bar1(addr_bar1),
-        .data_out_bar1(data_out_bar1)
+        // unified sram interface
+        .soc_write_en(soc_write_en),                       //1 for write, 0 for read
+        .soc_data_in(soc_data_in),
+        .soc_addr(soc_addr),
+        .soc_data_out(soc_data_out)
     );
 
-
-    mem_x bar0 (
-        .clk(clk),
-        .write_en(write_en_bar0),
-        .data_in(data_in_bar0),
-        .addr(addr_bar0),
-        .data_out(data_out_bar0)
-    );
-
-    mem_w bar1 (
-        .clk(clk),
-        .write_en(write_en_bar1),
-        .data_in(data_in_bar1),
-        .addr(addr_bar1),
-        .data_out(data_out_bar1)
-    );
+    assign soc_write_en = 0;
 
     initial begin
         clk = 0;
@@ -77,7 +68,7 @@ module linear_tb (
         start = 1;  // flush the computation
 
         // Wait for linear_done signal
-        wait(linear_done == 1'b1);
+        wait(mhsa_acc_wrapper_inst.mhsa_acc_top_inst.done_linear == 1'b1);
         #200 ;
 
         // read the ref
@@ -90,11 +81,11 @@ module linear_tb (
             if ((i % 4 == 0) && (i != 0)) begin
                 $fwrite(res_file,"\n");
             end
-            $fwrite(res_file,"%h ", bar1.mem_data[i+LINEAR_OUTPUT_BASE]);
+            $fwrite(res_file,"%h ", mhsa_acc_wrapper_inst.bar1.mem_data[i+LINEAR_OUTPUT_BASE]);
 
-            if (bar1.mem_data[i+LINEAR_OUTPUT_BASE] !== ref_data[i]) begin
+            if (mhsa_acc_wrapper_inst.bar1.mem_data[i+LINEAR_OUTPUT_BASE] !== ref_data[i]) begin
                 $display("Mismatch at [%0d]: Expected %d, Got %d", 
-                        i, ref_data[i], bar1.mem_data[i+LINEAR_OUTPUT_BASE] );
+                        i, ref_data[i], mhsa_acc_wrapper_inst.bar1.mem_data[i+LINEAR_OUTPUT_BASE] );
                 pass = 0;
             end
         end
