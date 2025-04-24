@@ -1,17 +1,17 @@
 //===================================================================== 
 // Description: 
-// mem pre-simulation model
+// qkmm layer : Q * KT
 // Designer : wangziyao1@sjtu.edu.cn
 // Revision History: 
-// V0 date:Initial version @ 2024/4/17
-// V1 date:Fix the bug and complete testbench @ 2024/4/20
-// V2 data:Merge bar2 to bar1 @ 2024/4/21
+// V0 date:Initial version @ 2024/4/22
+// V1 date:Fix the bug and complete testbench @ 2024/4/24
 // ==================================================================== 
 
-module linear#(
+module qkmm#(
     parameter WIDTH = 64,
     parameter LENGTH = 4096,
-    parameter LINEAR_OUTPUT_BASE = 'd800
+    parameter LINEAR_OUTPUT_BASE = 'd2048,
+    parameter QKMM_OUTPUT_BASE = LINEAR_OUTPUT_BASE + 'd512     // 32 * 128 * 8 bit / 64(mem width) = 512
 )(
     input logic clk,
     input logic rst_n,
@@ -32,7 +32,8 @@ module linear#(
     input logic [WIDTH - 1 : 0] data_out_bar1
 
 );
-logic [31:0] read_addr;
+logic [31:0] read_addr_q;
+logic [31:0] read_addr_k;
 logic [31:0] write_addr;
 
 logic [31:0] res [0:7][0:7];         // 8*8 systolic array, each PE output 8 bits
@@ -45,24 +46,28 @@ logic [1:0] state, next_state;
 logic bar_valid;           // bar0 and bar1 valid signal
 logic flush;              // flush PE result
 
-assign write_en_bar0 = 1'b0;
-assign data_in_bar0 = 64'b0;
-assign addr_bar1 = (state == WRITE) ? ( write_addr + LINEAR_OUTPUT_BASE ) : read_addr;
-
-// [-------------------------- loop counter --------------------------]
-logic [7:0] read_cnt;           // read 128 clock cycles
+logic [4:0] read_cnt;           // read 32 clock cycles
 logic [3:0] wait_cnt;           // wait 15 clock cycles ( read latency 7 + systolic latency 8 )
 logic [2:0] write_cnt;          // write 8 clock cycles
-logic [4:0] loop_cnt;        // 32 / 8 = 4
+logic [5:0] loop_cnt;           // x_loop(32/8) * y_loop(32/8) * head_dim(4) = 4*4*4 = 64
+logic [1:0] head_dim;
+assign head_dim = loop_cnt[5:4];
+
+assign write_en_bar0 = 1'b0;
+assign data_in_bar0 = 64'b0;
+assign addr_bar0 = LINEAR_OUTPUT_BASE + head_dim * 'd128 + read_addr_q;    // 128 block for each head
+assign addr_bar1 = (state == WRITE) ? (  QKMM_OUTPUT_BASE + write_addr ) : ( LINEAR_OUTPUT_BASE + head_dim * 'd128 + read_addr_k );
+
+// [-------------------------- loop counter --------------------------]
 
 always_ff @(posedge clk or negedge rst_n) begin
     if (!rst_n) begin
-        read_cnt <= 8'b0;
+        read_cnt <= 5'b0;
     end else begin
         if (state == READ) begin
             read_cnt <= read_cnt + 1'b1;
         end else begin
-            read_cnt <= 8'b0;
+            read_cnt <= 5'b0;
         end
     end
 end
@@ -93,7 +98,7 @@ end
 
 always_ff @(posedge clk or negedge rst_n) begin
     if (!rst_n) begin
-        loop_cnt <= 2'b0;
+        loop_cnt <= 6'b0;
     end else begin
         if (write_cnt == 3'd7) begin
                 loop_cnt <= loop_cnt + 1'b1;
@@ -107,21 +112,23 @@ end
 // row : X input
 always_ff @(posedge clk or negedge rst_n) begin
     if (!rst_n) begin
-        addr_bar0 <= 32'b0;
+        read_addr_q <= 32'b0;
     end else begin
         if(state == READ) begin
-            if(read_cnt == 8'd127) begin
-                if(loop_cnt[1:0] == 2'b11) begin
-                    addr_bar0 <= addr_bar0 - 4*127 + 1;
+            if(read_cnt == 5'd31) begin
+                if(loop_cnt[3:0] == 4'b1111) begin                     // new head -> offset = 0
+                    read_addr_q <= 0;
+                end else if(loop_cnt[1:0] == 2'b11) begin              // y_loop = 4
+                    read_addr_q <= read_addr_q - 4 * 31 + 1;
                 end else begin
-                    addr_bar0 <= addr_bar0 - 4*127;
+                    read_addr_q <= read_addr_q - 4 * 31;
                 end
             end else begin
-                addr_bar0 <= addr_bar0 + 4;
+                read_addr_q <= read_addr_q + 4;
             end
         end
         else begin
-            addr_bar0 <= addr_bar0;
+            read_addr_q <= read_addr_q;
         end
     end
 end
@@ -129,37 +136,45 @@ end
 // col : weight input
 always_ff @(posedge clk or negedge rst_n) begin
     if (!rst_n) begin
-        read_addr <= 32'b0;
+        read_addr_k <= 32'b0;
     end else begin
         if(state == READ) begin
-            if(read_cnt == 8'd127) begin
-                if(loop_cnt[1:0] == 2'b11) begin
-                    read_addr <= 32'b0;
+            if(read_cnt == 5'd31) begin
+                if(loop_cnt[3:0] == 4'b1111) begin                     // new head -> offset = 0
+                    read_addr_k <= 0;
+                end if(loop_cnt[1:0] == 2'b11) begin
+                    read_addr_k <= 32'b0;
                 end else begin
-                    read_addr <= read_addr - 4*127 + 1;
+                    read_addr_k <= read_addr_k - 4 * 31 + 1;
                 end
             end else begin
-                read_addr <= read_addr + 4;
+                read_addr_k <= read_addr_k + 4;
             end
         end
         else begin
-            read_addr <= read_addr;
+            read_addr_k <= read_addr_k;
         end
     end
 end
 
 // [-------------------------- output address generator --------------------------]
 
+assign write_en_bar1 = (state == WRITE) ? 1'b1 : 1'b0;
+
+// transpose the output data
+
 always_ff @(posedge clk or negedge rst_n) begin
     if (!rst_n) begin
         write_addr <= 32'b0;
     end else begin
         if (state == WRITE) begin
-            if (write_cnt == 3'd7) begin
-                if (loop_cnt[1:0] == 2'b11) begin
-                    write_addr <= write_addr + 1;
+            if (write_cnt == 3'd7) begin 
+                if(loop_cnt[3:0] == 4'b1111) begin                     // new head -> offset = 0
+                    write_addr <= 0;
+                end if (loop_cnt[1:0] == 2'b11) begin
+                    write_addr <= write_addr - 4*31 + 1;
                 end else begin
-                    write_addr <= write_addr - 4*7 + 1;
+                    write_addr <= write_addr + 4;
                 end
             end
             else begin
@@ -169,11 +184,9 @@ always_ff @(posedge clk or negedge rst_n) begin
     end
 end
 
-assign write_en_bar1 = (state == WRITE) ? 1'b1 : 1'b0;
-
 //TODO: modify quantization arigorithm
-assign data_in_bar1 = {res[write_cnt][0][7:0], res[write_cnt][1][7:0], res[write_cnt][2][7:0], res[write_cnt][3][7:0],
-                       res[write_cnt][4][7:0], res[write_cnt][5][7:0], res[write_cnt][6][7:0], res[write_cnt][7][7:0]};
+assign data_in_bar1 = {res[0][write_cnt][7:0], res[1][write_cnt][7:0], res[2][write_cnt][7:0], res[3][write_cnt][7:0],
+                    res[4][write_cnt][7:0], res[5][write_cnt][7:0], res[6][write_cnt][7:0], res[7][write_cnt][7:0]};
 
 // [-------------------------- fsm --------------------------]
 
@@ -195,7 +208,7 @@ always_comb begin
             end
         end
         READ: begin
-            if (read_cnt == 8'd127) begin
+            if (read_cnt == 5'd31) begin
                 next_state = WAIT;
             end else begin
                 next_state = READ;

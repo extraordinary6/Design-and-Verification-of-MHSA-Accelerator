@@ -23,12 +23,15 @@ module wrapper_tb (
     logic [31:0] output_base;
     logic start;
     logic linear_done;
-    integer res_file;
-    integer ref_file;
-    integer scan_ref;
-    reg [63:0] ref_data [0:127];
-    integer pass = 1;
-    parameter LINEAR_OUTPUT_BASE = 'd800;
+    integer linear_res_file, qkmm_res_file;
+    integer linear_ref_file, qkmm_ref_file;
+    integer linear_ref, qkmm_ref;
+    reg [63:0] linear_ref_data [0:511];
+    reg [63:0] qkmm_ref_data [0:127];
+    integer linear_pass = 1;
+    integer qkmm_pass = 1;
+    parameter LINEAR_OUTPUT_BASE = 'd2048;
+    parameter QKMM_OUTPUT_BASE = LINEAR_OUTPUT_BASE + 'd512;     // 32 * 128 * 8 bit / 64(mem width) = 512
 
     initial begin
         clk = 0;
@@ -57,8 +60,10 @@ module wrapper_tb (
     initial begin
         clk = 0;
         rst_n = 0;
-        res_file = $fopen("linear_res.txt", "w");
-        ref_file = $fopen("linear_ref.txt", "r");
+        linear_res_file = $fopen("linear_res.txt", "w");
+        linear_ref_file = $fopen("linear_q_output.txt", "r");
+        qkmm_res_file = $fopen("qkmm_res.txt", "w");
+        qkmm_ref_file = $fopen("qkmm_output.txt", "r");
 
         #20 ;
         rst_n = 1;
@@ -72,29 +77,58 @@ module wrapper_tb (
         #200 ;
 
         // read the ref
-        for (int i = 0; i < 128; i = i + 1) begin
-            scan_ref = $fscanf(ref_file, "%h", ref_data[i]);
+        for (int i = 0; i < 512; i = i + 1) begin
+            linear_ref = $fscanf(linear_ref_file, "%h", linear_ref_data[i]);
+        end
+
+        // compare the res & ref
+        for (int i = 0; i < 512; i++) begin
+            if ((i % 4 == 0) && (i != 0)) begin
+                $fwrite(linear_res_file,"\n");
+            end
+            $fwrite(linear_res_file,"%h ", mhsa_acc_wrapper_inst.bar1.mem_data[i+LINEAR_OUTPUT_BASE]);
+
+            if (mhsa_acc_wrapper_inst.bar1.mem_data[i+LINEAR_OUTPUT_BASE] !== linear_ref_data[i]) begin
+                $display("Mismatch at [%0d]: Expected %h, Got %h", 
+                        i, linear_ref_data[i], mhsa_acc_wrapper_inst.bar1.mem_data[i+LINEAR_OUTPUT_BASE] );
+                linear_pass = 0;
+            end
+        end
+
+        // Wait for qkmm_done signal
+        wait(mhsa_acc_wrapper_inst.mhsa_acc_top_inst.done_qkmm == 1'b1);
+        #200 ;
+
+        for (int i = 0; i < 512; i = i + 1) begin
+            qkmm_ref = $fscanf(qkmm_ref_file, "%h", qkmm_ref_data[i]);
         end
 
         // compare the res & ref
         for (int i = 0; i < 128; i++) begin
             if ((i % 4 == 0) && (i != 0)) begin
-                $fwrite(res_file,"\n");
+                $fwrite(qkmm_res_file,"\n");
             end
-            $fwrite(res_file,"%h ", mhsa_acc_wrapper_inst.bar1.mem_data[i+LINEAR_OUTPUT_BASE]);
+            $fwrite(qkmm_res_file,"%h ", mhsa_acc_wrapper_inst.bar2.mem_data[i+QKMM_OUTPUT_BASE]);
 
-            if (mhsa_acc_wrapper_inst.bar1.mem_data[i+LINEAR_OUTPUT_BASE] !== ref_data[i]) begin
-                $display("Mismatch at [%0d]: Expected %d, Got %d", 
-                        i, ref_data[i], mhsa_acc_wrapper_inst.bar1.mem_data[i+LINEAR_OUTPUT_BASE] );
-                pass = 0;
+            if (mhsa_acc_wrapper_inst.bar2.mem_data[i+QKMM_OUTPUT_BASE] !== qkmm_ref_data[i]) begin
+                $display("Mismatch at [%0d]: Expected %h, Got %h", 
+                        i, qkmm_ref_data[i], mhsa_acc_wrapper_inst.bar2.mem_data[i+QKMM_OUTPUT_BASE] );
+                qkmm_pass = 0;
             end
         end
 
+
         // print result
-        if (pass) begin
-            $display("TEST PASSED");
+        if (linear_pass) begin
+            $display("LINEAR PASSED");
         end else begin
-            $display("TEST FAILED");
+            $display("LINEAR FAILED");
+        end
+
+        if (qkmm_pass) begin
+            $display("QKMM PASSED");
+        end else begin
+            $display("QKMM FAILED");
         end
 
         $finish;

@@ -167,7 +167,7 @@ mem_x #(
     .data_out(bar0_data_out)
 );
 
-mem_w #(
+mem_wq #(
     .WIDTH(WIDTH),
     .LENGTH(LENGTH)
 ) bar1 (
@@ -178,7 +178,7 @@ mem_w #(
     .data_out(bar1_data_out)
 );
 
-mem #(
+mem_wk #(
     .WIDTH(WIDTH),
     .LENGTH(LENGTH)
 ) bar2 (
@@ -189,7 +189,7 @@ mem #(
     .data_out(bar2_data_out)
 );
 
-mem #(
+mem_wv #(
     .WIDTH(WIDTH),
     .LENGTH(LENGTH)
 ) bar3 (

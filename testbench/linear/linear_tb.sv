@@ -19,9 +19,9 @@ module linear_tb (
     integer res_file;
     integer ref_file;
     integer scan_ref;
-    reg [63:0] ref_data [0:127];
+    reg [63:0] ref_data [0:511];
     integer pass = 1;
-    parameter LINEAR_OUTPUT_BASE = 'd800;
+    parameter LINEAR_OUTPUT_BASE = 'd2048;
 
     initial begin
         clk = 0;
@@ -81,12 +81,12 @@ module linear_tb (
         #200 ;
 
         // read the ref
-        for (int i = 0; i < 128; i = i + 1) begin
+        for (int i = 0; i < 512; i = i + 1) begin
             scan_ref = $fscanf(ref_file, "%h", ref_data[i]);
         end
 
         // compare the res & ref
-        for (int i = 0; i < 128; i++) begin
+        for (int i = 0; i < 512; i++) begin
             if ((i % 4 == 0) && (i != 0)) begin
                 $fwrite(res_file,"\n");
             end

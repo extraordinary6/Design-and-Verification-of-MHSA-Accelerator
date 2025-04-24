@@ -15,12 +15,16 @@
 // V0 date:Initial version @ 2024/4/17
 // V1 date:Fix the bug and complete testbench @ 2024/4/20
 // V2 data:Merge bar2 to bar1 @ 2024/4/21
+// v3 data:Modify Weight (32,128) -> (128,32) @ 2024/4/24
 // ==================================================================== 
+
+// only for linear tb
+//`define NO_TRANSPOSE
 
 module linear#(
     parameter WIDTH = 64,
     parameter LENGTH = 4096,
-    parameter LINEAR_OUTPUT_BASE = 'd800
+    parameter LINEAR_OUTPUT_BASE = 'd2048       // 128 * 128 * 8bit / 64(mem width) = 2048
 )(
     input logic clk,
     input logic rst_n,
@@ -62,7 +66,7 @@ assign addr_bar1 = (state == WRITE) ? ( write_addr + LINEAR_OUTPUT_BASE ) : read
 logic [7:0] read_cnt;           // read 128 clock cycles
 logic [3:0] wait_cnt;           // wait 15 clock cycles ( read latency 7 + systolic latency 8 )
 logic [2:0] write_cnt;          // write 8 clock cycles
-logic [4:0] loop_cnt;        // 32 / 8 = 4
+logic [5:0] loop_cnt;           // x_loop(32/8) * y_loop(128/8) = 4*16 = 64  
 
 always_ff @(posedge clk or negedge rst_n) begin
     if (!rst_n) begin
@@ -102,7 +106,7 @@ end
 
 always_ff @(posedge clk or negedge rst_n) begin
     if (!rst_n) begin
-        loop_cnt <= 2'b0;
+        loop_cnt <= 6'b0;
     end else begin
         if (write_cnt == 3'd7) begin
                 loop_cnt <= loop_cnt + 1'b1;
@@ -120,7 +124,7 @@ always_ff @(posedge clk or negedge rst_n) begin
     end else begin
         if(state == READ) begin
             if(read_cnt == 8'd127) begin
-                if(loop_cnt[1:0] == 2'b11) begin
+                if(loop_cnt[3:0] == 4'b1111) begin              // y_loop = 16
                     addr_bar0 <= addr_bar0 - 4*127 + 1;
                 end else begin
                     addr_bar0 <= addr_bar0 - 4*127;
@@ -142,13 +146,13 @@ always_ff @(posedge clk or negedge rst_n) begin
     end else begin
         if(state == READ) begin
             if(read_cnt == 8'd127) begin
-                if(loop_cnt[1:0] == 2'b11) begin
+                if(loop_cnt[3:0] == 4'b1111) begin
                     read_addr <= 32'b0;
                 end else begin
-                    read_addr <= read_addr - 4*127 + 1;
+                    read_addr <= read_addr - 16*127 + 1;
                 end
             end else begin
-                read_addr <= read_addr + 4;
+                read_addr <= read_addr + 16;
             end
         end
         else begin
@@ -159,16 +163,20 @@ end
 
 // [-------------------------- output address generator --------------------------]
 
+assign write_en_bar1 = (state == WRITE) ? 1'b1 : 1'b0;
+
+// transpose the output data
+
 always_ff @(posedge clk or negedge rst_n) begin
     if (!rst_n) begin
         write_addr <= 32'b0;
     end else begin
         if (state == WRITE) begin
             if (write_cnt == 3'd7) begin
-                if (loop_cnt[1:0] == 2'b11) begin
-                    write_addr <= write_addr + 1;
+                if (loop_cnt[3:0] == 4'b1111) begin
+                    write_addr <= write_addr - 4*127 + 1;
                 end else begin
-                    write_addr <= write_addr - 4*7 + 1;
+                    write_addr <= write_addr + 4;
                 end
             end
             else begin
@@ -178,11 +186,9 @@ always_ff @(posedge clk or negedge rst_n) begin
     end
 end
 
-assign write_en_bar1 = (state == WRITE) ? 1'b1 : 1'b0;
-
 //TODO: modify quantization arigorithm
-assign data_in_bar1 = {res[write_cnt][0][7:0], res[write_cnt][1][7:0], res[write_cnt][2][7:0], res[write_cnt][3][7:0],
-                       res[write_cnt][4][7:0], res[write_cnt][5][7:0], res[write_cnt][6][7:0], res[write_cnt][7][7:0]};
+assign data_in_bar1 = {res[0][write_cnt][7:0], res[1][write_cnt][7:0], res[2][write_cnt][7:0], res[3][write_cnt][7:0],
+                    res[4][write_cnt][7:0], res[5][write_cnt][7:0], res[6][write_cnt][7:0], res[7][write_cnt][7:0]};
 
 // [-------------------------- fsm --------------------------]
 
@@ -250,7 +256,7 @@ always_ff @(posedge clk or negedge rst_n) begin
     end
 end
 
-assign done = (loop_cnt == 4'd15) && (write_cnt == 3'd7);
+assign done = (loop_cnt == 6'd63) && (write_cnt == 3'd7);
 
 
 // [------------------------ systolic instantiation ------------------------]

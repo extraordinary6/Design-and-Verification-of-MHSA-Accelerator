@@ -27,7 +27,7 @@ begin
     reg [7:0] data[0:31];
 
     // Open the text file
-    fd = $fopen("row_data.txt", "r");
+    fd = $fopen("input_x.txt", "r");
 
     // Read data from file and initialize memory
     for (i = 0; i < 128; i = i + 1) begin
