@@ -1,19 +1,19 @@
 //===================================================================== 
 // Description: 
-// qkmm layer : Q * KT
+// qkmm layer : QK * VT
 // Designer : wangziyao1@sjtu.edu.cn
 // Revision History: 
-// V0 date:Initial version @ 2024/4/22
-// V1 date:Fix the bug and complete testbench @ 2024/4/24
-// V2 date:Spilit read/write channel @ 2024/5/7
+// V0 date:Initial version @ 2024/5/7
 // ==================================================================== 
 
-module qkmm#(
+module attmm#(
     parameter WIDTH = 64,
     parameter LENGTH = 4096,
     parameter LINEAR_OUTPUT_BASE = 'd2048,
     parameter LINEAR_OUTPUT_SIZE = 'd512,                                     // 32 * 128 * 8 bit / 64(mem width) = 512
-    parameter QKMM_OUTPUT_BASE = 'd512
+    parameter QKMM_OUTPUT_BASE = 'd512,
+    parameter SOFTMAX_OUTPUT_BASE = LINEAR_OUTPUT_BASE + LINEAR_OUTPUT_SIZE,
+    parameter ATTMM_OUTPUT_BASE = LINEAR_OUTPUT_SIZE + LINEAR_OUTPUT_SIZE
 )(
     input logic clk,
     input logic rst_n,
@@ -21,19 +21,19 @@ module qkmm#(
     input logic start,
     output logic done,
 
-//  Q input
+//  QK input
     output   write_en_bar0,                       //1 for write, 0 for read
     output   [WIDTH - 1 : 0] data_in_bar0,
     output logic [31 : 0] addr_bar0,
     input logic [WIDTH - 1 : 0] data_out_bar0,      
 
-//  K input
+//  V input
     output   write_en_bar1,                       //1 for write, 0 for read
     output   [WIDTH - 1 : 0] data_in_bar1,
     output logic [31 : 0] addr_bar1,
     input logic [WIDTH - 1 : 0] data_out_bar1,
 
-//  QKMM output
+//  ATT output
     output   write_en_bar2,                       //1 for write, 0 for read
     output   [WIDTH - 1 : 0] data_in_bar2,
     output logic [31 : 0] addr_bar2,
@@ -66,9 +66,9 @@ assign data_in_bar0 = 64'b0;
 assign write_en_bar1 = 1'b0;
 assign data_in_bar1 = 64'b0;
 
-assign addr_bar0 = LINEAR_OUTPUT_BASE + head_dim * 'd128 + read_addr_q;
+assign addr_bar0 = SOFTMAX_OUTPUT_BASE + head_dim * 'd128 + read_addr_q;
 assign addr_bar1 = LINEAR_OUTPUT_BASE + head_dim * 'd128 + read_addr_k;
-assign addr_bar2 = QKMM_OUTPUT_BASE + head_dim * 'd128 + write_addr;
+assign addr_bar2 = ATTMM_OUTPUT_BASE + head_dim * 'd128 + write_addr;
 // [-------------------------- loop counter --------------------------]
 
 always_ff @(posedge clk or negedge rst_n) begin

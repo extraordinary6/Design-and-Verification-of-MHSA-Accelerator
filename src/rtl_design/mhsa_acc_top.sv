@@ -6,6 +6,9 @@
 //  |   |-- linear_q
 //  |   |-- linear_k
 //  |   |-- linear_v 
+//  |-- qkmm
+//  |-- softmax
+//  |-- attmm
 // Designer : wangziyao1@sjtu.edu.cn
 // Revision History: 
 // V0 date:Initial version @ 2024/3/28
@@ -51,24 +54,21 @@ module mhsa_acc_top#(
 localparam IDLE = 3'b000;
 localparam LINERA = 3'b001;
 localparam QKMM = 3'b010;
-localparam SCALE = 3'b011;
-localparam SOFTMAX = 3'b100;
-localparam ATTMM = 3'b101;       //attention matmul
-localparam POOL = 3'b110;
-localparam DONE = 3'b111;
+localparam SOFTMAX = 3'b011;
+localparam ATTMM = 3'b100;       //attention matmul
+localparam POOL = 3'b101;
+localparam DONE = 3'b110;
 
 logic [2:0] state, next_state; 
 
 logic start_linear;
 logic start_qkmm;
-logic start_scale;
 logic start_softmax;
 logic start_attmm;
 logic start_pool;
 
 logic done_linear;
 logic done_qkmm;
-logic done_scale;
 logic done_softmax;
 logic done_attmm;
 logic done_pool;
@@ -77,7 +77,6 @@ logic done_pool;
 
 assign start_linear = (state == LINERA) ? 1'b1 : 1'b0;
 assign start_qkmm = (state == QKMM) ? 1'b1 : 1'b0;
-assign start_scale = (state == SCALE) ? 1'b1 : 1'b0;
 assign start_softmax = (state == SOFTMAX) ? 1'b1 : 1'b0;
 assign start_attmm = (state == ATTMM) ? 1'b1 : 1'b0;
 assign start_pool = (state == POOL) ? 1'b1 : 1'b0;
@@ -109,16 +108,9 @@ always_comb begin
         end
         QKMM: begin
             if (done_qkmm) begin
-                next_state = SCALE;
-            end else begin
-                next_state = QKMM;
-            end
-        end
-        SCALE: begin
-            if (done_scale) begin
                 next_state = SOFTMAX;
             end else begin
-                next_state = SCALE;
+                next_state = QKMM;
             end
         end
         SOFTMAX: begin
@@ -154,6 +146,9 @@ always_comb begin
 end
 
 // [----------------- linear ----------------- ]
+logic bar0_write_en_linear;
+logic [WIDTH - 1 : 0] bar0_data_in_linear;
+logic [31 : 0] bar0_addr_linear;
 
 logic bar1_write_en_linear;
 logic [WIDTH - 1 : 0] bar1_data_in_linear;
@@ -163,6 +158,11 @@ logic bar2_write_en_linear;
 logic [WIDTH - 1 : 0] bar2_data_in_linear;
 logic [31 : 0] bar2_addr_linear;
 
+logic bar3_write_en_linear;
+logic [WIDTH - 1 : 0] bar3_data_in_linear;
+logic [31 : 0] bar3_addr_linear;
+
+
 linear linear_q(
     .clk(clk),
     .rst_n(rst_n),
@@ -170,10 +170,10 @@ linear linear_q(
     .start(start_linear),
     .done(done_linear),
 
-    .write_en_bar0(),
-    .data_in_bar0(),
-    .addr_bar0(bar0_addr),
-    .data_out_bar0(bar0_data_out),                  // data_out global broadcast
+    .write_en_bar0(bar0_write_en_linear),
+    .data_in_bar0(bar0_data_in_linear),
+    .addr_bar0(bar0_addr_linear),
+    .data_out_bar0(bar0_data_out),
 
     .write_en_bar1(bar1_write_en_linear),
     .data_in_bar1(bar1_data_in_linear),
@@ -211,9 +211,9 @@ linear linear_v(
     .addr_bar0(),
     .data_out_bar0(bar0_data_out),
 
-    .write_en_bar1(bar3_write_en),
-    .data_in_bar1(bar3_data_in),
-    .addr_bar1(bar3_addr),
+    .write_en_bar1(bar3_write_en_linear),
+    .data_in_bar1(bar3_data_in_linear),
+    .addr_bar1(bar3_addr_linear),
     .data_out_bar1(bar3_data_out)
 );
 
@@ -226,6 +226,10 @@ logic [31 : 0] bar1_addr_qkmm;
 logic bar2_write_en_qkmm;
 logic [WIDTH - 1 : 0] bar2_data_in_qkmm;
 logic [31 : 0] bar2_addr_qkmm;
+
+logic bar0_write_en_qkmm;
+logic [WIDTH - 1 : 0] bar0_data_in_qkmm;
+logic [31 : 0] bar0_addr_qkmm;
 
 qkmm qkmm_inst(
     .clk(clk),
@@ -242,15 +246,89 @@ qkmm qkmm_inst(
     .write_en_bar1(bar2_write_en_qkmm),
     .data_in_bar1(bar2_data_in_qkmm),
     .addr_bar1(bar2_addr_qkmm),
-    .data_out_bar1(bar2_data_out)
+    .data_out_bar1(bar2_data_out),
+
+    .write_en_bar2(bar0_write_en_qkmm),
+    .data_in_bar2(bar0_data_in_qkmm),
+    .addr_bar2(bar0_addr_qkmm),
+    .data_out_bar2(bar0_data_out)
+);
+
+// [----------------- softmax ----------------- ]
+logic bar0_write_en_softmax;
+logic [WIDTH - 1 : 0] bar0_data_in_softmax;
+logic [31 : 0] bar0_addr_softmax;
+
+logic bar1_write_en_softmax;
+logic [WIDTH - 1 : 0] bar1_data_in_softmax;
+logic [31 : 0] bar1_addr_softmax;
+
+softmax softmax_inst(
+    .clk(clk),
+    .rst_n(rst_n),
+
+    .start(start_softmax),
+    .done(done_softmax),
+
+    .write_en_bar0(bar0_write_en_softmax),
+    .data_in_bar0(bar0_data_in_softmax),
+    .addr_bar0(bar0_addr_softmax),
+    .data_out_bar0(bar0_data_out),
+
+    .write_en_bar1(bar1_write_en_softmax),
+    .data_in_bar1(bar1_data_in_softmax),
+    .addr_bar1(bar1_addr_softmax),
+    .data_out_bar1(bar1_data_out)
 );
 
 // [----------------- attmm ----------------- ]
 
+logic bar1_write_en_attmm;
+logic [WIDTH - 1 : 0] bar1_data_in_attmm;
+logic [31 : 0] bar1_addr_attmm;
+
+logic bar2_write_en_attmm;
+logic [WIDTH - 1 : 0] bar2_data_in_attmm;
+logic [31 : 0] bar2_addr_attmm;
+
+logic bar3_write_en_attmm;
+logic [WIDTH - 1 : 0] bar3_data_in_attmm;
+logic [31 : 0] bar3_addr_attmm;
+
+attmm attmm_inst(
+    .clk(clk),
+    .rst_n(rst_n),
+
+    .start(start_attmm),
+    .done(done_attmm),
+
+    .write_en_bar0(bar1_write_en_attmm),
+    .data_in_bar0(bar1_data_in_attmm),
+    .addr_bar0(bar1_addr_attmm),
+    .data_out_bar0(bar1_data_out),
+
+    .write_en_bar1(bar3_write_en_attmm),
+    .data_in_bar1(bar3_data_in_attmm),
+    .addr_bar1(bar3_addr_attmm),
+    .data_out_bar1(bar3_data_out),
+
+    .write_en_bar2(bar2_write_en_attmm),
+    .data_in_bar2(bar2_data_in_attmm),
+    .addr_bar2(bar2_addr_attmm),
+    .data_out_bar2(bar2_data_out)
+);
+
 // [----------------- bar arbiter ----------------- ]
+
+// data_out global broadcast
+
 always_comb begin
     case(state)
         LINERA: begin
+            bar0_write_en = bar0_write_en_linear;
+            bar0_data_in = bar0_data_in_linear;
+            bar0_addr = bar0_addr_linear;
+
             bar1_write_en = bar1_write_en_linear;
             bar1_data_in = bar1_data_in_linear;
             bar1_addr = bar1_addr_linear;
@@ -258,8 +336,16 @@ always_comb begin
             bar2_write_en = bar2_write_en_linear;
             bar2_data_in = bar2_data_in_linear;
             bar2_addr = bar2_addr_linear;
+
+            bar3_write_en = bar3_write_en_linear;
+            bar3_data_in = bar3_data_in_linear;
+            bar3_addr = bar3_addr_linear;
         end
         QKMM: begin
+            bar0_write_en = bar0_write_en_qkmm;
+            bar0_data_in = bar0_data_in_qkmm;
+            bar0_addr = bar0_addr_qkmm;
+
             bar1_write_en = bar1_write_en_qkmm;
             bar1_data_in = bar1_data_in_qkmm;
             bar1_addr = bar1_addr_qkmm;
@@ -267,8 +353,50 @@ always_comb begin
             bar2_write_en = bar2_write_en_qkmm;
             bar2_data_in = bar2_data_in_qkmm;
             bar2_addr = bar2_addr_qkmm;
+
+            bar3_write_en = 1'b0;
+            bar3_data_in = '0;
+            bar3_addr = '0;
+        end
+        SOFTMAX: begin
+            bar0_write_en = bar0_write_en_softmax;
+            bar0_data_in = bar0_data_in_softmax;
+            bar0_addr = bar0_addr_softmax;
+
+            bar1_write_en = bar1_write_en_softmax;
+            bar1_data_in = bar1_data_in_softmax;
+            bar1_addr = bar1_addr_softmax;
+
+            bar2_write_en = 1'b0;
+            bar2_data_in = '0;
+            bar2_addr = '0;
+
+            bar3_write_en = 1'b0;
+            bar3_data_in = '0;
+            bar3_addr = '0;
+        end
+        ATTMM: begin
+            bar0_write_en = 1'b0;
+            bar0_data_in = '0;
+            bar0_addr = '0;
+
+            bar1_write_en = bar1_write_en_attmm;
+            bar1_data_in = bar1_data_in_attmm;
+            bar1_addr = bar1_addr_attmm;
+
+            bar2_write_en = bar2_write_en_attmm;
+            bar2_data_in = bar2_data_in_attmm;
+            bar2_addr = bar2_addr_attmm;
+
+            bar3_write_en = bar3_write_en_attmm;
+            bar3_data_in = bar3_data_in_attmm;
+            bar3_addr = bar3_addr_attmm;
         end
         default: begin
+            bar0_write_en = 1'b0;
+            bar0_data_in = '0;
+            bar0_addr = '0;
+
             bar1_write_en = 1'b0;
             bar1_data_in = '0;
             bar1_addr = '0;
@@ -276,11 +404,12 @@ always_comb begin
             bar2_write_en = 1'b0;
             bar2_data_in = '0;
             bar2_addr = '0;
+
+            bar3_write_en = 1'b0;
+            bar3_data_in = '0;
+            bar3_addr = '0;
         end
     endcase
 end
-
-assign bar0_write_en = 1'b0;
-assign bar0_data_in = '0;
 
 endmodule
