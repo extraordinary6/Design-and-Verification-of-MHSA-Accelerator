@@ -6,14 +6,19 @@
 // V0 date:Initial version @ 2024/4/22
 // V1 date:Fix the bug and complete testbench @ 2024/4/24
 // V2 date:Spilit read/write channel @ 2024/5/7
+// V3 date:Parameterize @ 2024/5/8
 // ==================================================================== 
 
 module qkmm#(
     parameter WIDTH = 64,
     parameter LENGTH = 4096,
-    parameter LINEAR_OUTPUT_BASE = 'd2048,
+    parameter WEIGHT_BASE = 'd0,
+    parameter WEIGHT_SIZE = 'd2048,                                           // 128 * 128 * 8bit / 64(mem width) = 2048
+    parameter INPUT_BASE = WEIGHT_BASE + WEIGHT_SIZE,
+    parameter INPUT_SIZE = 'd512,                                             // 32 * 128 * 8 bit / 64(mem width) = 512
+    parameter LINEAR_OUTPUT_BASE = WEIGHT_BASE + WEIGHT_SIZE,
     parameter LINEAR_OUTPUT_SIZE = 'd512,                                     // 32 * 128 * 8 bit / 64(mem width) = 512
-    parameter QKMM_OUTPUT_BASE = 'd512
+    parameter QKMM_OUTPUT_BASE = INPUT_BASE + INPUT_SIZE
 )(
     input logic clk,
     input logic rst_n,

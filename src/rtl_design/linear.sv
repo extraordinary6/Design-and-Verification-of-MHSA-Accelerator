@@ -16,6 +16,7 @@
 // V1 date:Fix the bug and complete testbench @ 2024/4/20
 // V2 data:Merge bar2 to bar1 @ 2024/4/21
 // v3 data:Modify Weight (32,128) -> (128,32) @ 2024/4/24
+// v4 data:parameterize @ 2024/5/8
 // ==================================================================== 
 
 // only for linear tb
@@ -24,7 +25,12 @@
 module linear#(
     parameter WIDTH = 64,
     parameter LENGTH = 4096,
-    parameter LINEAR_OUTPUT_BASE = 'd2048       // 128 * 128 * 8bit / 64(mem width) = 2048
+    parameter WEIGHT_BASE = 'd0,
+    parameter WEIGHT_SIZE = 'd2048,                                           // 128 * 128 * 8bit / 64(mem width) = 2048
+    parameter INPUT_BASE = WEIGHT_BASE + WEIGHT_SIZE,
+    parameter INPUT_SIZE = 'd512,                                             // 32 * 128 * 8 bit / 64(mem width) = 512
+    parameter LINEAR_OUTPUT_BASE = WEIGHT_BASE + WEIGHT_SIZE,
+    parameter LINEAR_OUTPUT_SIZE = 'd512
 )(
     input logic clk,
     input logic rst_n,
@@ -45,7 +51,8 @@ module linear#(
     input logic [WIDTH - 1 : 0] data_out_bar1
 
 );
-logic [31:0] read_addr;
+logic [31:0] read_addr_w;
+logic [31:0] read_addr_x;
 logic [31:0] write_addr;
 
 logic [31:0] res [0:7][0:7];         // 8*8 systolic array, each PE output 8 bits
@@ -60,7 +67,8 @@ logic flush;              // flush PE result
 
 assign write_en_bar0 = 1'b0;
 assign data_in_bar0 = 64'b0;
-assign addr_bar1 = (state == WRITE) ? ( write_addr + LINEAR_OUTPUT_BASE ) : read_addr;
+assign addr_bar0 = INPUT_BASE + read_addr_x; // read address for X input
+assign addr_bar1 = (state == WRITE) ? ( write_addr + LINEAR_OUTPUT_BASE ) : ( read_addr_w + WEIGHT_BASE );
 
 // [-------------------------- loop counter --------------------------]
 logic [7:0] read_cnt;           // read 128 clock cycles
@@ -120,21 +128,21 @@ end
 // row : X input
 always_ff @(posedge clk or negedge rst_n) begin
     if (!rst_n) begin
-        addr_bar0 <= 32'b0;
+        read_addr_x <= 32'b0;
     end else begin
         if(state == READ) begin
             if(read_cnt == 8'd127) begin
                 if(loop_cnt[3:0] == 4'b1111) begin              // y_loop = 16
-                    addr_bar0 <= addr_bar0 - 4*127 + 1;
+                    read_addr_x <= read_addr_x - 4*127 + 1;
                 end else begin
-                    addr_bar0 <= addr_bar0 - 4*127;
+                    read_addr_x <= read_addr_x - 4*127;
                 end
             end else begin
-                addr_bar0 <= addr_bar0 + 4;
+                read_addr_x <= read_addr_x + 4;
             end
         end
         else begin
-            addr_bar0 <= addr_bar0;
+            read_addr_x <= read_addr_x;
         end
     end
 end
@@ -142,21 +150,21 @@ end
 // col : weight input
 always_ff @(posedge clk or negedge rst_n) begin
     if (!rst_n) begin
-        read_addr <= 32'b0;
+        read_addr_w <= 32'b0;
     end else begin
         if(state == READ) begin
             if(read_cnt == 8'd127) begin
                 if(loop_cnt[3:0] == 4'b1111) begin
-                    read_addr <= 32'b0;
+                    read_addr_w <= 32'b0;
                 end else begin
-                    read_addr <= read_addr - 16*127 + 1;
+                    read_addr_w <= read_addr_w - 16*127 + 1;
                 end
             end else begin
-                read_addr <= read_addr + 16;
+                read_addr_w <= read_addr_w + 16;
             end
         end
         else begin
-            read_addr <= read_addr;
+            read_addr_w <= read_addr_w;
         end
     end
 end

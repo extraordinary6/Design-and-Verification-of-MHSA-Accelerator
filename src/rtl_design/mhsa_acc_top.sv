@@ -2,18 +2,22 @@
 // Description: 
 // mhsa_acc_top
 //  |-- FSM
-//  |-- linear(pre)
-//  |   |-- linear_q
-//  |   |-- linear_k
-//  |   |-- linear_v 
-//  |-- qkmm
-//  |-- softmax
-//  |-- attmm
+//  |-- MHSA cmpt
+//  |   |-- linear
+//  |   |   |-- linear_q
+//  |   |   |-- linear_k
+//  |   |   |-- linear_v
+//  |   |-- qkmm
+//  |   |-- softmax
+//  |   |-- attmm
+//  |   |-- connect
+//  |-- arbiter
 // Designer : wangziyao1@sjtu.edu.cn
 // Revision History: 
 // V0 date:Initial version @ 2024/3/28
 // V1 date:Instantiate linear @ 2024/4/21
 // V2 data:Add qkmm attmm arbiter @ 2024/4/24
+// V3 data:add conncet @ 2024/5/8
 // ==================================================================== 
 
 module mhsa_acc_top#(
@@ -56,7 +60,7 @@ localparam LINERA = 3'b001;
 localparam QKMM = 3'b010;
 localparam SOFTMAX = 3'b011;
 localparam ATTMM = 3'b100;       //attention matmul
-localparam POOL = 3'b101;
+localparam CONNECT = 3'b101;
 localparam DONE = 3'b110;
 
 logic [2:0] state, next_state; 
@@ -65,13 +69,13 @@ logic start_linear;
 logic start_qkmm;
 logic start_softmax;
 logic start_attmm;
-logic start_pool;
+logic start_connect;
 
 logic done_linear;
 logic done_qkmm;
 logic done_softmax;
 logic done_attmm;
-logic done_pool;
+logic done_connect;
 
 // [----------------- fsm -------------------]
 
@@ -79,7 +83,7 @@ assign start_linear = (state == LINERA) ? 1'b1 : 1'b0;
 assign start_qkmm = (state == QKMM) ? 1'b1 : 1'b0;
 assign start_softmax = (state == SOFTMAX) ? 1'b1 : 1'b0;
 assign start_attmm = (state == ATTMM) ? 1'b1 : 1'b0;
-assign start_pool = (state == POOL) ? 1'b1 : 1'b0;
+assign start_connect = (state == CONNECT) ? 1'b1 : 1'b0;
 assign done = (state == DONE) ? 1'b1 : 1'b0;
 
 always_ff @(posedge clk or negedge rst_n) begin
@@ -122,16 +126,16 @@ always_comb begin
         end 
         ATTMM: begin 
             if (done_attmm) begin 
-                next_state = POOL; 
+                next_state = CONNECT; 
             end else begin 
                 next_state = ATTMM; 
             end 
         end 
-        POOL: begin 
-            if (done_pool) begin 
+        CONNECT: begin 
+            if (done_connect) begin 
                 next_state = DONE; 
             end else begin 
-                next_state = POOL; 
+                next_state = CONNECT; 
             end 
         end 
         DONE: begin 
@@ -318,6 +322,34 @@ attmm attmm_inst(
     .data_out_bar2(bar2_data_out)
 );
 
+// [----------------- connect ----------------- ]
+
+logic bar0_write_en_connect;
+logic [WIDTH - 1 : 0] bar0_data_in_connect;
+logic [31 : 0] bar0_addr_connect;
+
+logic bar2_write_en_connect;
+logic [WIDTH - 1 : 0] bar2_data_in_connect;
+logic [31 : 0] bar2_addr_connect;
+
+connect connect_inst(
+    .clk(clk),
+    .rst_n(rst_n),
+
+    .start(start_connect),
+    .done(done_connect),
+
+    .write_en_bar0(bar2_write_en_connect),
+    .data_in_bar0(bar2_data_in_connect),
+    .addr_bar0(bar2_addr_connect),
+    .data_out_bar0(bar2_data_out),
+
+    .write_en_bar1(bar0_write_en_connect),
+    .data_in_bar1(bar0_data_in_connect),
+    .addr_bar1(bar0_addr_connect),
+    .data_out_bar1(bar0_data_out)
+);
+
 // [----------------- bar arbiter ----------------- ]
 
 // data_out global broadcast
@@ -391,6 +423,40 @@ always_comb begin
             bar3_write_en = bar3_write_en_attmm;
             bar3_data_in = bar3_data_in_attmm;
             bar3_addr = bar3_addr_attmm;
+        end
+        CONNECT: begin
+            bar0_write_en = bar0_write_en_connect;
+            bar0_data_in = bar0_data_in_connect;
+            bar0_addr = bar0_addr_connect;
+
+            bar1_write_en = 1'b0;
+            bar1_data_in = '0;
+            bar1_addr = '0;
+
+            bar2_write_en = bar2_write_en_connect;
+            bar2_data_in = bar2_data_in_connect;
+            bar2_addr = bar2_addr_connect;
+
+            bar3_write_en = 1'b0;
+            bar3_data_in = '0;
+            bar3_addr = '0;
+        end
+        DONE: begin
+            bar0_write_en = 1'b0;
+            bar0_data_in = '0;
+            bar0_addr = '0;
+
+            bar1_write_en = 1'b0;
+            bar1_data_in = '0;
+            bar1_addr = '0;
+
+            bar2_write_en = 1'b0;
+            bar2_data_in = '0;
+            bar2_addr = '0;
+
+            bar3_write_en = 1'b0;
+            bar3_data_in = '0;
+            bar3_addr = '0;
         end
         default: begin
             bar0_write_en = 1'b0;

@@ -8,7 +8,9 @@
 
 module mem_wk #(
     parameter WIDTH = 64,
-    parameter LENGTH = 4096
+    parameter LENGTH = 4096,
+    parameter WEIGHT_BASE = 'd0,
+    parameter WEIGHT_SIZE = 'd2048                                           // 128 * 128 * 8bit / 64(mem width) = 2048
 )
 (
     input   clk,
@@ -37,7 +39,7 @@ begin
 
         // Pack 8 bytes into one 64-bit memory word
         for (j = 0; j < 16; j = j + 1) begin
-            mem_data[i * 16 + j] = { data[j * 8], data[j * 8 + 1], data[j * 8 + 2], data[j * 8 + 3], data[j * 8 + 4], data[j * 8 + 5], data[j * 8 + 6], data[j * 8 + 7] };
+            mem_data[WEIGHT_BASE + i * 16 + j] = { data[j * 8], data[j * 8 + 1], data[j * 8 + 2], data[j * 8 + 3], data[j * 8 + 4], data[j * 8 + 5], data[j * 8 + 6], data[j * 8 + 7] };
         end
     end
 

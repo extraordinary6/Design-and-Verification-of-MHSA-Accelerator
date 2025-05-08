@@ -4,14 +4,20 @@
 // Designer : wangziyao1@sjtu.edu.cn
 // Revision History: 
 // V0 date:Initial version @ 2024/4/28
+// V1 date:Remove softmax_core @ 2024/5/2
+// V2 date:Parameterize @ 2024/5/8
 // ==================================================================== 
 
 module softmax#(
     parameter WIDTH = 64,
     parameter LENGTH = 4096,
-    parameter LINEAR_OUTPUT_BASE = 'd2048,
+    parameter WEIGHT_BASE = 'd0,
+    parameter WEIGHT_SIZE = 'd2048,                                           // 128 * 128 * 8bit / 64(mem width) = 2048
+    parameter INPUT_BASE = WEIGHT_BASE + WEIGHT_SIZE,
+    parameter INPUT_SIZE = 'd512,                                             // 32 * 128 * 8 bit / 64(mem width) = 512
+    parameter LINEAR_OUTPUT_BASE = WEIGHT_BASE + WEIGHT_SIZE,
     parameter LINEAR_OUTPUT_SIZE = 'd512,                                     // 32 * 128 * 8 bit / 64(mem width) = 512
-    parameter QKMM_OUTPUT_BASE = 'd512,
+    parameter QKMM_OUTPUT_BASE = INPUT_BASE + INPUT_SIZE,
     parameter SOFTMAX_OUTPUT_BASE = LINEAR_OUTPUT_BASE + LINEAR_OUTPUT_SIZE
 )(
     input logic clk,
