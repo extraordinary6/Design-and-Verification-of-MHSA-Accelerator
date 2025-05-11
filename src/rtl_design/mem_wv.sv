@@ -22,30 +22,30 @@ module mem_wv #(
 
 logic [WIDTH - 1 : 0] mem_data [0:LENGTH-1];
 
-initial
-begin
-    integer i, j, k;
-    integer fd,scan_row;
-    reg [7:0] data[0:127];
+// initial
+// begin
+//     integer i, j, k;
+//     integer fd,scan_row;
+//     reg [7:0] data[0:127];
 
-    // Open the text file
-    fd = $fopen("Wv.txt", "r");
+//     // Open the text file
+//     fd = $fopen("Wv.txt", "r");
 
-    // Read data from file and initialize memory
-    for (i = 0; i < 128; i = i + 1) begin
-        for (j = 0; j < 128; j = j + 1) begin
-            scan_row = $fscanf(fd, "%d", data[j]);
-        end
+//     // Read data from file and initialize memory
+//     for (i = 0; i < 128; i = i + 1) begin
+//         for (j = 0; j < 128; j = j + 1) begin
+//             scan_row = $fscanf(fd, "%d", data[j]);
+//         end
 
-        // Pack 8 bytes into one 64-bit memory word
-        for (j = 0; j < 16; j = j + 1) begin
-            mem_data[WEIGHT_BASE + i * 16 + j] = { data[j * 8], data[j * 8 + 1], data[j * 8 + 2], data[j * 8 + 3], data[j * 8 + 4], data[j * 8 + 5], data[j * 8 + 6], data[j * 8 + 7] };
-        end
-    end
+//         // Pack 8 bytes into one 64-bit memory word
+//         for (j = 0; j < 16; j = j + 1) begin
+//             mem_data[WEIGHT_BASE + i * 16 + j] = { data[j * 8], data[j * 8 + 1], data[j * 8 + 2], data[j * 8 + 3], data[j * 8 + 4], data[j * 8 + 5], data[j * 8 + 6], data[j * 8 + 7] };
+//         end
+//     end
 
-    // Close the file
-    $fclose(fd);
-end
+//     // Close the file
+//     $fclose(fd);
+// end
 
 always@(posedge clk) begin
     if(~write_en)

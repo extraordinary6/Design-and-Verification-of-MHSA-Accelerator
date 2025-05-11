@@ -1,0 +1,289 @@
+Coverage Report Summary Data by file
+
+=================================================================================
+=== File: C:/Users/Xypher/Desktop/master/SoC_design_method/project/MHSA_Accelerator_E203/uvm_mhsa/../src/rtl_design/attmm.sv
+=================================================================================
+    Enabled Coverage            Active      Hits    Misses % Covered
+    ----------------            ------      ----    ------ ---------
+    Stmts                           66        66         0     100.0
+    Branches                        64        64         0     100.0
+    FEC Condition Terms              0         0         0     100.0
+    FEC Expression Terms             2         2         0     100.0
+    FSMs                                                        83.3
+        States                       4         4         0     100.0
+        Transitions                  6         4         2      66.6
+    Toggle Bins                   1218       669       549      54.9
+
+=================================================================================
+=== File: C:/Users/Xypher/Desktop/master/SoC_design_method/project/MHSA_Accelerator_E203/uvm_mhsa/../src/rtl_design/connect.sv
+=================================================================================
+    Enabled Coverage            Active      Hits    Misses % Covered
+    ----------------            ------      ----    ------ ---------
+    Stmts                           60        60         0     100.0
+    Branches                        63        63         0     100.0
+    FEC Condition Terms              0         0         0     100.0
+    FEC Expression Terms             2         2         0     100.0
+    FSMs                                                        83.3
+        States                       4         4         0     100.0
+        Transitions                  6         4         2      66.6
+    Toggle Bins                    898       547       351      60.9
+
+=================================================================================
+=== File: C:/Users/Xypher/Desktop/master/SoC_design_method/project/MHSA_Accelerator_E203/uvm_mhsa/../src/rtl_design/linear.sv
+=================================================================================
+    Enabled Coverage            Active      Hits    Misses % Covered
+    ----------------            ------      ----    ------ ---------
+    Stmts                           60        60         0     100.0
+    Branches                        63        63         0     100.0
+    FEC Condition Terms              0         0         0     100.0
+    FEC Expression Terms             2         2         0     100.0
+    FSMs                                                        83.3
+        States                       4         4         0     100.0
+        Transitions                  6         4         2      66.6
+    Toggle Bins                    898       547       351      60.9
+
+=================================================================================
+=== File: C:/Users/Xypher/Desktop/master/SoC_design_method/project/MHSA_Accelerator_E203/uvm_mhsa/../src/rtl_design/mem_wk.sv
+=================================================================================
+    Enabled Coverage            Active      Hits    Misses % Covered
+    ----------------            ------      ----    ------ ---------
+    Stmts                            4         4         0     100.0
+    Branches                         4         4         0     100.0
+    FEC Condition Terms              0         0         0     100.0
+    FEC Expression Terms             0         0         0     100.0
+    FSMs                                                       100.0
+        States                       0         0         0     100.0
+        Transitions                  0         0         0     100.0
+    Toggle Bins                    324       284        40      87.6
+
+=================================================================================
+=== File: C:/Users/Xypher/Desktop/master/SoC_design_method/project/MHSA_Accelerator_E203/uvm_mhsa/../src/rtl_design/mem_wq.sv
+=================================================================================
+    Enabled Coverage            Active      Hits    Misses % Covered
+    ----------------            ------      ----    ------ ---------
+    Stmts                            4         4         0     100.0
+    Branches                         4         4         0     100.0
+    FEC Condition Terms              0         0         0     100.0
+    FEC Expression Terms             0         0         0     100.0
+    FSMs                                                       100.0
+        States                       0         0         0     100.0
+        Transitions                  0         0         0     100.0
+    Toggle Bins                    324       284        40      87.6
+
+=================================================================================
+=== File: C:/Users/Xypher/Desktop/master/SoC_design_method/project/MHSA_Accelerator_E203/uvm_mhsa/../src/rtl_design/mem_wv.sv
+=================================================================================
+    Enabled Coverage            Active      Hits    Misses % Covered
+    ----------------            ------      ----    ------ ---------
+    Stmts                            4         4         0     100.0
+    Branches                         4         4         0     100.0
+    FEC Condition Terms              0         0         0     100.0
+    FEC Expression Terms             0         0         0     100.0
+    FSMs                                                       100.0
+        States                       0         0         0     100.0
+        Transitions                  0         0         0     100.0
+    Toggle Bins                    324       284        40      87.6
+
+=================================================================================
+=== File: C:/Users/Xypher/Desktop/master/SoC_design_method/project/MHSA_Accelerator_E203/uvm_mhsa/../src/rtl_design/mem_x.sv
+=================================================================================
+    Enabled Coverage            Active      Hits    Misses % Covered
+    ----------------            ------      ----    ------ ---------
+    Stmts                            4         4         0     100.0
+    Branches                         4         4         0     100.0
+    FEC Condition Terms              0         0         0     100.0
+    FEC Expression Terms             0         0         0     100.0
+    FSMs                                                       100.0
+        States                       0         0         0     100.0
+        Transitions                  0         0         0     100.0
+    Toggle Bins                    324       284        40      87.6
+
+=================================================================================
+=== File: C:/Users/Xypher/Desktop/master/SoC_design_method/project/MHSA_Accelerator_E203/uvm_mhsa/../src/rtl_design/mhsa_acc_top.sv
+=================================================================================
+    Enabled Coverage            Active      Hits    Misses % Covered
+    ----------------            ------      ----    ------ ---------
+    Stmts                          110       110         0     100.0
+    Branches                        31        31         0     100.0
+    FEC Condition Terms              0         0         0     100.0
+    FEC Expression Terms             0         0         0     100.0
+    FSMs                                                        79.1
+        States                       7         7         0     100.0
+        Transitions                 12         7         5      58.3
+    Toggle Bins                   4172      2353      1819      56.3
+
+=================================================================================
+=== File: C:/Users/Xypher/Desktop/master/SoC_design_method/project/MHSA_Accelerator_E203/uvm_mhsa/../src/rtl_design/mhsa_acc_wrapper.sv
+=================================================================================
+    Enabled Coverage            Active      Hits    Misses % Covered
+    ----------------            ------      ----    ------ ---------
+    Stmts                           26        26         0     100.0
+    Branches                        66        65         1      98.4
+    FEC Condition Terms              0         0         0     100.0
+    FEC Expression Terms             8         6         2      75.0
+    FSMs                                                       100.0
+        States                       0         0         0     100.0
+        Transitions                  0         0         0     100.0
+    Toggle Bins                   3050      2565       485      84.0
+
+=================================================================================
+=== File: C:/Users/Xypher/Desktop/master/SoC_design_method/project/MHSA_Accelerator_E203/uvm_mhsa/../src/rtl_design/mm_pe.sv
+=================================================================================
+    Enabled Coverage            Active      Hits    Misses % Covered
+    ----------------            ------      ----    ------ ---------
+    Stmts                            9         9         0     100.0
+    Branches                         6         6         0     100.0
+    FEC Condition Terms              0         0         0     100.0
+    FEC Expression Terms             0         0         0     100.0
+    FSMs                                                       100.0
+        States                       0         0         0     100.0
+        Transitions                  0         0         0     100.0
+    Toggle Bins                    138       137         1      99.2
+
+=================================================================================
+=== File: C:/Users/Xypher/Desktop/master/SoC_design_method/project/MHSA_Accelerator_E203/uvm_mhsa/../src/rtl_design/mm_systolic.sv
+=================================================================================
+    Enabled Coverage            Active      Hits    Misses % Covered
+    ----------------            ------      ----    ------ ---------
+    Stmts                           60        60         0     100.0
+    Branches                         2         2         0     100.0
+    FEC Condition Terms              0         0         0     100.0
+    FEC Expression Terms             0         0         0     100.0
+    FSMs                                                       100.0
+        States                       0         0         0     100.0
+        Transitions                  0         0         0     100.0
+    Toggle Bins                   1430      1429         1      99.9
+
+=================================================================================
+=== File: C:/Users/Xypher/Desktop/master/SoC_design_method/project/MHSA_Accelerator_E203/uvm_mhsa/../src/rtl_design/qkmm.sv
+=================================================================================
+    Enabled Coverage            Active      Hits    Misses % Covered
+    ----------------            ------      ----    ------ ---------
+    Stmts                           66        66         0     100.0
+    Branches                        64        64         0     100.0
+    FEC Condition Terms              0         0         0     100.0
+    FEC Expression Terms             2         2         0     100.0
+    FSMs                                                        83.3
+        States                       4         4         0     100.0
+        Transitions                  6         4         2      66.6
+    Toggle Bins                   1218       669       549      54.9
+
+=================================================================================
+=== File: C:/Users/Xypher/Desktop/master/SoC_design_method/project/MHSA_Accelerator_E203/uvm_mhsa/../src/rtl_design/scale_core.sv
+=================================================================================
+    Enabled Coverage            Active      Hits    Misses % Covered
+    ----------------            ------      ----    ------ ---------
+    Stmts                           10        10         0     100.0
+    Branches                         6         6         0     100.0
+    FEC Condition Terms              0         0         0     100.0
+    FEC Expression Terms             0         0         0     100.0
+    FSMs                                                       100.0
+        States                       0         0         0     100.0
+        Transitions                  0         0         0     100.0
+    Toggle Bins                    264       263         1      99.6
+
+=================================================================================
+=== File: C:/Users/Xypher/Desktop/master/SoC_design_method/project/MHSA_Accelerator_E203/uvm_mhsa/../src/rtl_design/softmax.sv
+=================================================================================
+    Enabled Coverage            Active      Hits    Misses % Covered
+    ----------------            ------      ----    ------ ---------
+    Stmts                           17        17         0     100.0
+    Branches                        12        12         0     100.0
+    FEC Condition Terms              0         0         0     100.0
+    FEC Expression Terms             0         0         0     100.0
+    FSMs                                                       100.0
+        States                       0         0         0     100.0
+        Transitions                  0         0         0     100.0
+    Toggle Bins                    952       597       355      62.7
+
+=================================================================================
+=== File: C:/Users/Xypher/Desktop/master/SoC_design_method/project/MHSA_Accelerator_E203/uvm_mhsa/dut_if.sv
+=================================================================================
+    Enabled Coverage            Active      Hits    Misses % Covered
+    ----------------            ------      ----    ------ ---------
+    Stmts                           10        10         0     100.0
+    Branches                         0         0         0     100.0
+    FEC Condition Terms              0         0         0     100.0
+    FEC Expression Terms             0         0         0     100.0
+    FSMs                                                       100.0
+        States                       0         0         0     100.0
+        Transitions                  0         0         0     100.0
+    Toggle Bins                    458       293       165      63.9
+
+=================================================================================
+=== File: C:/Users/Xypher/Desktop/master/SoC_design_method/project/MHSA_Accelerator_E203/uvm_mhsa/my_agent_pkg.sv
+=================================================================================
+    Enabled Coverage            Active      Hits    Misses % Covered
+    ----------------            ------      ----    ------ ---------
+    Stmts                           81        69        12      85.1
+    Branches                        29        18        11      62.0
+    FEC Condition Terms              3         3         0     100.0
+    FEC Expression Terms             0         0         0     100.0
+    FSMs                                                       100.0
+        States                       0         0         0     100.0
+        Transitions                  0         0         0     100.0
+    Toggle Bins                      0         0         0     100.0
+
+=================================================================================
+=== File: C:/Users/Xypher/Desktop/master/SoC_design_method/project/MHSA_Accelerator_E203/uvm_mhsa/my_env_pkg.sv
+=================================================================================
+    Enabled Coverage            Active      Hits    Misses % Covered
+    ----------------            ------      ----    ------ ---------
+    Stmts                          184       162        22      88.0
+    Branches                        48        21        27      43.7
+    FEC Condition Terms              0         0         0     100.0
+    FEC Expression Terms             0         0         0     100.0
+    FSMs                                                       100.0
+        States                       0         0         0     100.0
+        Transitions                  0         0         0     100.0
+    Toggle Bins                      0         0         0     100.0
+
+=================================================================================
+=== File: C:/Users/Xypher/Desktop/master/SoC_design_method/project/MHSA_Accelerator_E203/uvm_mhsa/my_sequence_pkg.sv
+=================================================================================
+    Enabled Coverage            Active      Hits    Misses % Covered
+    ----------------            ------      ----    ------ ---------
+    Stmts                          316       143       173      45.2
+    Branches                       228        19       209       8.3
+    FEC Condition Terms              0         0         0     100.0
+    FEC Expression Terms             0         0         0     100.0
+    FSMs                                                       100.0
+        States                       0         0         0     100.0
+        Transitions                  0         0         0     100.0
+    Toggle Bins                      0         0         0     100.0
+
+=================================================================================
+=== File: C:/Users/Xypher/Desktop/master/SoC_design_method/project/MHSA_Accelerator_E203/uvm_mhsa/my_test_pkg.sv
+=================================================================================
+    Enabled Coverage            Active      Hits    Misses % Covered
+    ----------------            ------      ----    ------ ---------
+    Stmts                           80        68        12      85.0
+    Branches                        18         7        11      38.8
+    FEC Condition Terms              2         0         2       0.0
+    FEC Expression Terms             0         0         0     100.0
+    FSMs                                                       100.0
+        States                       0         0         0     100.0
+        Transitions                  0         0         0     100.0
+    Toggle Bins                      0         0         0     100.0
+
+=================================================================================
+=== File: C:/Users/Xypher/Desktop/master/SoC_design_method/project/MHSA_Accelerator_E203/uvm_mhsa/my_top.sv
+=================================================================================
+    Enabled Coverage            Active      Hits    Misses % Covered
+    ----------------            ------      ----    ------ ---------
+    Stmts                           17        17         0     100.0
+    Branches                         0         0         0     100.0
+    FEC Condition Terms              0         0         0     100.0
+    FEC Expression Terms             0         0         0     100.0
+    FSMs                                                       100.0
+        States                       0         0         0     100.0
+        Transitions                  0         0         0     100.0
+    Toggle Bins                      4         3         1      75.0
+
+
+TOTAL COVERGROUP COVERAGE: 62.5%  COVERGROUP TYPES: 2
+
+TOTAL ASSERTION COVERAGE: 91.1%  ASSERTIONS: 45
+
+Total Coverage By File (code coverage only, filtered view): 74.1%
+
