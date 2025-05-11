@@ -1,6 +1,6 @@
 //=====================================================================
 // Description:
-// my environment package
+// my test package
 // Designer : Huang Chaofan, extraordinary.h@sjtu.edu.cn
 // Revision History:
 // V0 date: 4.6 Initial version, Huang Chaofan
