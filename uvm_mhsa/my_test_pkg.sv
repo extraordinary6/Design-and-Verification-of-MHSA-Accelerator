@@ -7,7 +7,7 @@
 // ====================================================================
 
 package my_test_pkg;
-  parameter NUM_ENV = 4;
+  parameter NUM_ENV = 3;
 
   import uvm_pkg::*;
   import my_sequence_pkg::*;
@@ -74,7 +74,7 @@ package my_test_pkg;
         my_vsequencer_h.p_my_sequencer[i] = my_env_h[i].my_agent_i_h.my_sequencer_h;     
       end
 
-      // uvm_top.print_topology();
+      uvm_top.print_topology();
     endfunction : connect_phase	
 
     function void report_phase(uvm_phase phase);

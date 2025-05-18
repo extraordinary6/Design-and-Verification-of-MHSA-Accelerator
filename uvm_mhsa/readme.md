@@ -5,5 +5,8 @@ vlog +incdir+<questasim_dir>/verilog_src/uvm-1.2/src -cover sbceft ./uvm_mhsa/my
 
 vsim -gui work.my_top -novopt -assertdebug -coverage -sv_lib <questasim_dir>/uvm-1.2/win64/uvm_dpi +UVM_TESTNAME=test0
 
+运行仿真：
+run -all
+
 输出覆盖率报告：     
 coverage report -output ./uvm_mhsa/report/coverage_report.txt

@@ -1,7 +1,7 @@
 Coverage Report Summary Data by file
 
 =================================================================================
-=== File: C:/Users/Xypher/Desktop/master/SoC_design_method/project/MHSA_Accelerator_E203/uvm_mhsa/../src/rtl_design/attmm.sv
+=== File: ./uvm_mhsa/../src/rtl_design/attmm.sv
 =================================================================================
     Enabled Coverage            Active      Hits    Misses % Covered
     ----------------            ------      ----    ------ ---------
@@ -15,7 +15,7 @@ Coverage Report Summary Data by file
     Toggle Bins                   1218       669       549      54.9
 
 =================================================================================
-=== File: C:/Users/Xypher/Desktop/master/SoC_design_method/project/MHSA_Accelerator_E203/uvm_mhsa/../src/rtl_design/connect.sv
+=== File: ./uvm_mhsa/../src/rtl_design/connect.sv
 =================================================================================
     Enabled Coverage            Active      Hits    Misses % Covered
     ----------------            ------      ----    ------ ---------
@@ -29,7 +29,7 @@ Coverage Report Summary Data by file
     Toggle Bins                    898       547       351      60.9
 
 =================================================================================
-=== File: C:/Users/Xypher/Desktop/master/SoC_design_method/project/MHSA_Accelerator_E203/uvm_mhsa/../src/rtl_design/linear.sv
+=== File: ./uvm_mhsa/../src/rtl_design/linear.sv
 =================================================================================
     Enabled Coverage            Active      Hits    Misses % Covered
     ----------------            ------      ----    ------ ---------
@@ -43,7 +43,7 @@ Coverage Report Summary Data by file
     Toggle Bins                    898       547       351      60.9
 
 =================================================================================
-=== File: C:/Users/Xypher/Desktop/master/SoC_design_method/project/MHSA_Accelerator_E203/uvm_mhsa/../src/rtl_design/mem_wk.sv
+=== File: ./uvm_mhsa/../src/rtl_design/mem_wk.sv
 =================================================================================
     Enabled Coverage            Active      Hits    Misses % Covered
     ----------------            ------      ----    ------ ---------
@@ -57,7 +57,7 @@ Coverage Report Summary Data by file
     Toggle Bins                    324       284        40      87.6
 
 =================================================================================
-=== File: C:/Users/Xypher/Desktop/master/SoC_design_method/project/MHSA_Accelerator_E203/uvm_mhsa/../src/rtl_design/mem_wq.sv
+=== File: ./uvm_mhsa/../src/rtl_design/mem_wq.sv
 =================================================================================
     Enabled Coverage            Active      Hits    Misses % Covered
     ----------------            ------      ----    ------ ---------
@@ -71,7 +71,7 @@ Coverage Report Summary Data by file
     Toggle Bins                    324       284        40      87.6
 
 =================================================================================
-=== File: C:/Users/Xypher/Desktop/master/SoC_design_method/project/MHSA_Accelerator_E203/uvm_mhsa/../src/rtl_design/mem_wv.sv
+=== File: ./uvm_mhsa/../src/rtl_design/mem_wv.sv
 =================================================================================
     Enabled Coverage            Active      Hits    Misses % Covered
     ----------------            ------      ----    ------ ---------
@@ -85,7 +85,7 @@ Coverage Report Summary Data by file
     Toggle Bins                    324       284        40      87.6
 
 =================================================================================
-=== File: C:/Users/Xypher/Desktop/master/SoC_design_method/project/MHSA_Accelerator_E203/uvm_mhsa/../src/rtl_design/mem_x.sv
+=== File: ./uvm_mhsa/../src/rtl_design/mem_x.sv
 =================================================================================
     Enabled Coverage            Active      Hits    Misses % Covered
     ----------------            ------      ----    ------ ---------
@@ -99,7 +99,7 @@ Coverage Report Summary Data by file
     Toggle Bins                    324       284        40      87.6
 
 =================================================================================
-=== File: C:/Users/Xypher/Desktop/master/SoC_design_method/project/MHSA_Accelerator_E203/uvm_mhsa/../src/rtl_design/mhsa_acc_top.sv
+=== File: ./uvm_mhsa/../src/rtl_design/mhsa_acc_top.sv
 =================================================================================
     Enabled Coverage            Active      Hits    Misses % Covered
     ----------------            ------      ----    ------ ---------
@@ -113,7 +113,7 @@ Coverage Report Summary Data by file
     Toggle Bins                   4172      2353      1819      56.3
 
 =================================================================================
-=== File: C:/Users/Xypher/Desktop/master/SoC_design_method/project/MHSA_Accelerator_E203/uvm_mhsa/../src/rtl_design/mhsa_acc_wrapper.sv
+=== File: ./uvm_mhsa/../src/rtl_design/mhsa_acc_wrapper.sv
 =================================================================================
     Enabled Coverage            Active      Hits    Misses % Covered
     ----------------            ------      ----    ------ ---------
@@ -127,7 +127,7 @@ Coverage Report Summary Data by file
     Toggle Bins                   3050      2565       485      84.0
 
 =================================================================================
-=== File: C:/Users/Xypher/Desktop/master/SoC_design_method/project/MHSA_Accelerator_E203/uvm_mhsa/../src/rtl_design/mm_pe.sv
+=== File: ./uvm_mhsa/../src/rtl_design/mm_pe.sv
 =================================================================================
     Enabled Coverage            Active      Hits    Misses % Covered
     ----------------            ------      ----    ------ ---------
@@ -141,7 +141,7 @@ Coverage Report Summary Data by file
     Toggle Bins                    138       137         1      99.2
 
 =================================================================================
-=== File: C:/Users/Xypher/Desktop/master/SoC_design_method/project/MHSA_Accelerator_E203/uvm_mhsa/../src/rtl_design/mm_systolic.sv
+=== File: ./uvm_mhsa/../src/rtl_design/mm_systolic.sv
 =================================================================================
     Enabled Coverage            Active      Hits    Misses % Covered
     ----------------            ------      ----    ------ ---------
@@ -155,7 +155,7 @@ Coverage Report Summary Data by file
     Toggle Bins                   1430      1429         1      99.9
 
 =================================================================================
-=== File: C:/Users/Xypher/Desktop/master/SoC_design_method/project/MHSA_Accelerator_E203/uvm_mhsa/../src/rtl_design/qkmm.sv
+=== File: ./uvm_mhsa/../src/rtl_design/qkmm.sv
 =================================================================================
     Enabled Coverage            Active      Hits    Misses % Covered
     ----------------            ------      ----    ------ ---------
@@ -169,7 +169,7 @@ Coverage Report Summary Data by file
     Toggle Bins                   1218       669       549      54.9
 
 =================================================================================
-=== File: C:/Users/Xypher/Desktop/master/SoC_design_method/project/MHSA_Accelerator_E203/uvm_mhsa/../src/rtl_design/scale_core.sv
+=== File: ./uvm_mhsa/../src/rtl_design/scale_core.sv
 =================================================================================
     Enabled Coverage            Active      Hits    Misses % Covered
     ----------------            ------      ----    ------ ---------
@@ -183,7 +183,7 @@ Coverage Report Summary Data by file
     Toggle Bins                    264       263         1      99.6
 
 =================================================================================
-=== File: C:/Users/Xypher/Desktop/master/SoC_design_method/project/MHSA_Accelerator_E203/uvm_mhsa/../src/rtl_design/softmax.sv
+=== File: ./uvm_mhsa/../src/rtl_design/softmax.sv
 =================================================================================
     Enabled Coverage            Active      Hits    Misses % Covered
     ----------------            ------      ----    ------ ---------
@@ -197,7 +197,7 @@ Coverage Report Summary Data by file
     Toggle Bins                    952       597       355      62.7
 
 =================================================================================
-=== File: C:/Users/Xypher/Desktop/master/SoC_design_method/project/MHSA_Accelerator_E203/uvm_mhsa/dut_if.sv
+=== File: ./uvm_mhsa/dut_if.sv
 =================================================================================
     Enabled Coverage            Active      Hits    Misses % Covered
     ----------------            ------      ----    ------ ---------
@@ -211,11 +211,11 @@ Coverage Report Summary Data by file
     Toggle Bins                    458       293       165      63.9
 
 =================================================================================
-=== File: C:/Users/Xypher/Desktop/master/SoC_design_method/project/MHSA_Accelerator_E203/uvm_mhsa/my_agent_pkg.sv
+=== File: ./uvm_mhsa/my_agent_pkg.sv
 =================================================================================
     Enabled Coverage            Active      Hits    Misses % Covered
     ----------------            ------      ----    ------ ---------
-    Stmts                           81        69        12      85.1
+    Stmts                           81        70        11      86.4
     Branches                        29        18        11      62.0
     FEC Condition Terms              3         3         0     100.0
     FEC Expression Terms             0         0         0     100.0
@@ -225,7 +225,7 @@ Coverage Report Summary Data by file
     Toggle Bins                      0         0         0     100.0
 
 =================================================================================
-=== File: C:/Users/Xypher/Desktop/master/SoC_design_method/project/MHSA_Accelerator_E203/uvm_mhsa/my_env_pkg.sv
+=== File: ./uvm_mhsa/my_env_pkg.sv
 =================================================================================
     Enabled Coverage            Active      Hits    Misses % Covered
     ----------------            ------      ----    ------ ---------
@@ -239,7 +239,7 @@ Coverage Report Summary Data by file
     Toggle Bins                      0         0         0     100.0
 
 =================================================================================
-=== File: C:/Users/Xypher/Desktop/master/SoC_design_method/project/MHSA_Accelerator_E203/uvm_mhsa/my_sequence_pkg.sv
+=== File: ./uvm_mhsa/my_sequence_pkg.sv
 =================================================================================
     Enabled Coverage            Active      Hits    Misses % Covered
     ----------------            ------      ----    ------ ---------
@@ -253,11 +253,11 @@ Coverage Report Summary Data by file
     Toggle Bins                      0         0         0     100.0
 
 =================================================================================
-=== File: C:/Users/Xypher/Desktop/master/SoC_design_method/project/MHSA_Accelerator_E203/uvm_mhsa/my_test_pkg.sv
+=== File: ./uvm_mhsa/my_test_pkg.sv
 =================================================================================
     Enabled Coverage            Active      Hits    Misses % Covered
     ----------------            ------      ----    ------ ---------
-    Stmts                           80        68        12      85.0
+    Stmts                           81        70        11      86.4
     Branches                        18         7        11      38.8
     FEC Condition Terms              2         0         2       0.0
     FEC Expression Terms             0         0         0     100.0
@@ -267,7 +267,7 @@ Coverage Report Summary Data by file
     Toggle Bins                      0         0         0     100.0
 
 =================================================================================
-=== File: C:/Users/Xypher/Desktop/master/SoC_design_method/project/MHSA_Accelerator_E203/uvm_mhsa/my_top.sv
+=== File: ./uvm_mhsa/my_top.sv
 =================================================================================
     Enabled Coverage            Active      Hits    Misses % Covered
     ----------------            ------      ----    ------ ---------
@@ -283,7 +283,7 @@ Coverage Report Summary Data by file
 
 TOTAL COVERGROUP COVERAGE: 62.5%  COVERGROUP TYPES: 2
 
-TOTAL ASSERTION COVERAGE: 91.1%  ASSERTIONS: 45
+TOTAL ASSERTION COVERAGE: 100.0%  ASSERTIONS: 34
 
 Total Coverage By File (code coverage only, filtered view): 74.1%
 

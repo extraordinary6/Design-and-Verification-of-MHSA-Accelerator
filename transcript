@@ -14,11 +14,18 @@
 # //  18 U.S.C. Section 1905.
 # //
 # vsim -gui work.my_top -novopt -assertdebug -coverage -sv_lib D:/questasim/questa_sim/uvm-1.2/win64/uvm_dpi "+UVM_TESTNAME=test0" 
-# Start time: 16:53:43 on May 11,2025
-# Loading C:/Users/Xypher/AppData/Local/Temp\Xypher@LAPTOP-BTLH03U0_dpi_20224\win64_gcc-14.2.0\export_tramp.dll
+# Start time: 16:09:37 on May 18,2025
+# Loading C:/Users/Xypher/AppData/Local/Temp\Xypher@LAPTOP-BTLH03U0_dpi_23464\win64_gcc-14.2.0\export_tramp.dll
 # ** Warning: (vsim-8891) All optimizations are turned off because the -novopt switch is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features please see the User's Manual section on Preserving Object Visibility with vopt.
+# Refreshing C:/Users/Xypher/Desktop/master/SoC_design_method/project/MHSA_Accelerator_E203/work.my_top
+# Refreshing C:/Users/Xypher/Desktop/master/SoC_design_method/project/MHSA_Accelerator_E203/work.dut_if
 # Loading sv_std.std
 # Loading work.dut_if
+# Refreshing C:/Users/Xypher/Desktop/master/SoC_design_method/project/MHSA_Accelerator_E203/work.my_test_pkg
+# Refreshing C:/Users/Xypher/Desktop/master/SoC_design_method/project/MHSA_Accelerator_E203/work.my_env_pkg
+# Refreshing C:/Users/Xypher/Desktop/master/SoC_design_method/project/MHSA_Accelerator_E203/work.my_agent_pkg
+# Refreshing C:/Users/Xypher/Desktop/master/SoC_design_method/project/MHSA_Accelerator_E203/work.my_sequence_pkg
+# Refreshing C:/Users/Xypher/Desktop/master/SoC_design_method/project/MHSA_Accelerator_E203/work.uvm_pkg
 # Loading work.uvm_pkg
 # Loading work.my_sequence_pkg
 # ** Note: (vsim-8785) UVM-aware debugging capabilities will be disabled since no compiled "questa_uvm_pkg" can be found.
@@ -28,26 +35,49 @@
 # Loading work.my_env_pkg
 # Loading work.my_test_pkg
 # Loading work.my_top
+# Refreshing C:/Users/Xypher/Desktop/master/SoC_design_method/project/MHSA_Accelerator_E203/work.dut
 # Loading work.dut
+# Refreshing C:/Users/Xypher/Desktop/master/SoC_design_method/project/MHSA_Accelerator_E203/work.dut_top
 # Loading work.dut_top
+# Refreshing C:/Users/Xypher/Desktop/master/SoC_design_method/project/MHSA_Accelerator_E203/work.mhsa_acc_wrapper
 # Loading work.mhsa_acc_wrapper
+# Refreshing C:/Users/Xypher/Desktop/master/SoC_design_method/project/MHSA_Accelerator_E203/work.mhsa_acc_top
+# ** Note: (vlog-143) Recognized 1 FSM in module "mhsa_acc_top(verilog)".
 # Loading work.mhsa_acc_top
+# Refreshing C:/Users/Xypher/Desktop/master/SoC_design_method/project/MHSA_Accelerator_E203/work.linear
+# ** Note: (vlog-143) Recognized 1 FSM in module "linear(verilog)".
 # Loading work.linear
+# Refreshing C:/Users/Xypher/Desktop/master/SoC_design_method/project/MHSA_Accelerator_E203/work.mm_systolic
 # Loading work.mm_systolic
+# Refreshing C:/Users/Xypher/Desktop/master/SoC_design_method/project/MHSA_Accelerator_E203/work.qkmm
+# ** Note: (vlog-143) Recognized 1 FSM in module "qkmm(verilog)".
 # Loading work.qkmm
+# Refreshing C:/Users/Xypher/Desktop/master/SoC_design_method/project/MHSA_Accelerator_E203/work.softmax
 # Loading work.softmax
+# Refreshing C:/Users/Xypher/Desktop/master/SoC_design_method/project/MHSA_Accelerator_E203/work.scale_core
 # Loading work.scale_core
+# Refreshing C:/Users/Xypher/Desktop/master/SoC_design_method/project/MHSA_Accelerator_E203/work.attmm
+# ** Note: (vlog-143) Recognized 1 FSM in module "attmm(verilog)".
 # Loading work.attmm
+# Refreshing C:/Users/Xypher/Desktop/master/SoC_design_method/project/MHSA_Accelerator_E203/work.connect
+# ** Note: (vlog-143) Recognized 1 FSM in module "connect(verilog)".
 # Loading work.connect
+# Refreshing C:/Users/Xypher/Desktop/master/SoC_design_method/project/MHSA_Accelerator_E203/work.mem_x
 # Loading work.mem_x
+# Refreshing C:/Users/Xypher/Desktop/master/SoC_design_method/project/MHSA_Accelerator_E203/work.mem_wq
 # Loading work.mem_wq
+# Refreshing C:/Users/Xypher/Desktop/master/SoC_design_method/project/MHSA_Accelerator_E203/work.mem_wk
 # Loading work.mem_wk
+# Refreshing C:/Users/Xypher/Desktop/master/SoC_design_method/project/MHSA_Accelerator_E203/work.mem_wv
 # Loading work.mem_wv
+# Refreshing C:/Users/Xypher/Desktop/master/SoC_design_method/project/MHSA_Accelerator_E203/work.pe
 # Loading work.pe
+# Refreshing C:/Users/Xypher/Desktop/master/SoC_design_method/project/MHSA_Accelerator_E203/work.if_assertion
 # Loading work.if_assertion
-# Compiling C:/Users/Xypher/AppData/Local/Temp\Xypher@LAPTOP-BTLH03U0_dpi_20224\win64_gcc-14.2.0\exportwrapper.c
-# Loading C:/Users/Xypher/AppData/Local/Temp\Xypher@LAPTOP-BTLH03U0_dpi_20224\win64_gcc-14.2.0\vsim_auto_compile.dll
+# Compiling C:/Users/Xypher/AppData/Local/Temp\Xypher@LAPTOP-BTLH03U0_dpi_23464\win64_gcc-14.2.0\exportwrapper.c
+# Loading C:/Users/Xypher/AppData/Local/Temp\Xypher@LAPTOP-BTLH03U0_dpi_23464\win64_gcc-14.2.0\vsim_auto_compile.dll
 # Loading D:/questasim/questa_sim/uvm-1.2/win64/uvm_dpi.dll
+do C:/Users/Xypher/Desktop/master/SoC_design_method/project/MHSA_Accelerator_E203/wave.do
 run -all
 # UVM_INFO D:/questasim/questa_sim/verilog_src/uvm-1.2/src/base/uvm_root.svh(392) @ 0: reporter [UVM/RELNOTES] 
 # ----------------------------------------------------------------
@@ -72,26 +102,174 @@ run -all
 #       (Specify +UVM_NO_RELNOTES to turn off this notice)
 # 
 # UVM_INFO @ 0: reporter [RNTST] Running test test0...
-# UVM_INFO C:\Users\Xypher\Desktop\master\SoC_design_method\project\MHSA_Accelerator_E203\uvm_mhsa\my_test_pkg.sv(61) @ 0: uvm_test_top [my_test] ENV_CFG(s) set into config_db
-# UVM_INFO C:\Users\Xypher\Desktop\master\SoC_design_method\project\MHSA_Accelerator_E203\uvm_mhsa\my_env_pkg.sv(441) @ 0: uvm_test_top.my_env_h[0] [my_env] AGENT_CFG(s) set into config_db
-# UVM_INFO C:\Users\Xypher\Desktop\master\SoC_design_method\project\MHSA_Accelerator_E203\uvm_mhsa\my_env_pkg.sv(441) @ 0: uvm_test_top.my_env_h[1] [my_env] AGENT_CFG(s) set into config_db
-# UVM_INFO C:\Users\Xypher\Desktop\master\SoC_design_method\project\MHSA_Accelerator_E203\uvm_mhsa\my_env_pkg.sv(441) @ 0: uvm_test_top.my_env_h[2] [my_env] AGENT_CFG(s) set into config_db
-# UVM_INFO C:\Users\Xypher\Desktop\master\SoC_design_method\project\MHSA_Accelerator_E203\uvm_mhsa\my_env_pkg.sv(441) @ 0: uvm_test_top.my_env_h[3] [my_env] AGENT_CFG(s) set into config_db
-# UVM_INFO C:\Users\Xypher\Desktop\master\SoC_design_method\project\MHSA_Accelerator_E203\uvm_mhsa\my_env_pkg.sv(323) @ 174105000: uvm_test_top.my_env_h[0].my_model_h [my_model] MHSA calculation completed
-# UVM_INFO C:\Users\Xypher\Desktop\master\SoC_design_method\project\MHSA_Accelerator_E203\uvm_mhsa\my_env_pkg.sv(323) @ 208926000: uvm_test_top.my_env_h[1].my_model_h [my_model] MHSA calculation completed
-# UVM_INFO C:\Users\Xypher\Desktop\master\SoC_design_method\project\MHSA_Accelerator_E203\uvm_mhsa\my_env_pkg.sv(323) @ 243747000: uvm_test_top.my_env_h[2].my_model_h [my_model] MHSA calculation completed
-# UVM_INFO C:\Users\Xypher\Desktop\master\SoC_design_method\project\MHSA_Accelerator_E203\uvm_mhsa\my_test_pkg.sv(135) @ 448065000: uvm_test_top [test0] acc compute finished!
-# UVM_INFO C:\Users\Xypher\Desktop\master\SoC_design_method\project\MHSA_Accelerator_E203\uvm_mhsa\my_env_pkg.sv(368) @ 453185000: uvm_test_top.my_env_h[0].my_scoreboard_h [my_scoreboard] Check Passed!
-# UVM_INFO C:\Users\Xypher\Desktop\master\SoC_design_method\project\MHSA_Accelerator_E203\uvm_mhsa\my_env_pkg.sv(369) @ 453185000: uvm_test_top.my_env_h[0].my_scoreboard_h [my_scoreboard] Total number of transactions: 512
-# UVM_INFO C:\Users\Xypher\Desktop\master\SoC_design_method\project\MHSA_Accelerator_E203\uvm_mhsa\my_env_pkg.sv(370) @ 453185000: uvm_test_top.my_env_h[0].my_scoreboard_h [my_scoreboard] Number of wrong transactions: 0
-# UVM_INFO C:\Users\Xypher\Desktop\master\SoC_design_method\project\MHSA_Accelerator_E203\uvm_mhsa\my_test_pkg.sv(163) @ 537678000: uvm_test_top [test0] acc compute finished!
-# UVM_INFO C:\Users\Xypher\Desktop\master\SoC_design_method\project\MHSA_Accelerator_E203\uvm_mhsa\my_env_pkg.sv(368) @ 543822000: uvm_test_top.my_env_h[1].my_scoreboard_h [my_scoreboard] Check Passed!
-# UVM_INFO C:\Users\Xypher\Desktop\master\SoC_design_method\project\MHSA_Accelerator_E203\uvm_mhsa\my_env_pkg.sv(369) @ 543822000: uvm_test_top.my_env_h[1].my_scoreboard_h [my_scoreboard] Total number of transactions: 512
-# UVM_INFO C:\Users\Xypher\Desktop\master\SoC_design_method\project\MHSA_Accelerator_E203\uvm_mhsa\my_env_pkg.sv(370) @ 543822000: uvm_test_top.my_env_h[1].my_scoreboard_h [my_scoreboard] Number of wrong transactions: 0
-# UVM_INFO C:\Users\Xypher\Desktop\master\SoC_design_method\project\MHSA_Accelerator_E203\uvm_mhsa\my_test_pkg.sv(192) @ 627291000: uvm_test_top [test0] acc compute finished!
-# UVM_INFO C:\Users\Xypher\Desktop\master\SoC_design_method\project\MHSA_Accelerator_E203\uvm_mhsa\my_env_pkg.sv(368) @ 634459000: uvm_test_top.my_env_h[2].my_scoreboard_h [my_scoreboard] Check Passed!
-# UVM_INFO C:\Users\Xypher\Desktop\master\SoC_design_method\project\MHSA_Accelerator_E203\uvm_mhsa\my_env_pkg.sv(369) @ 634459000: uvm_test_top.my_env_h[2].my_scoreboard_h [my_scoreboard] Total number of transactions: 512
-# UVM_INFO C:\Users\Xypher\Desktop\master\SoC_design_method\project\MHSA_Accelerator_E203\uvm_mhsa\my_env_pkg.sv(370) @ 634459000: uvm_test_top.my_env_h[2].my_scoreboard_h [my_scoreboard] Number of wrong transactions: 0
+# UVM_INFO .\uvm_mhsa\my_test_pkg.sv(61) @ 0: uvm_test_top [my_test] ENV_CFG(s) set into config_db
+# UVM_INFO .\uvm_mhsa\my_env_pkg.sv(441) @ 0: uvm_test_top.my_env_h[0] [my_env] AGENT_CFG(s) set into config_db
+# UVM_INFO .\uvm_mhsa\my_env_pkg.sv(441) @ 0: uvm_test_top.my_env_h[1] [my_env] AGENT_CFG(s) set into config_db
+# UVM_INFO .\uvm_mhsa\my_env_pkg.sv(441) @ 0: uvm_test_top.my_env_h[2] [my_env] AGENT_CFG(s) set into config_db
+# UVM_INFO D:/questasim/questa_sim/verilog_src/uvm-1.2/src/base/uvm_root.svh(579) @ 0: reporter [UVMTOP] UVM testbench topology:
+# ------------------------------------------------------------------
+# Name                       Type                        Size  Value
+# ------------------------------------------------------------------
+# uvm_test_top               test0                       -     @351 
+#   my_env_h[0]              my_env                      -     @381 
+#     i_agt_mdl_fifo         uvm_tlm_analysis_fifo #(T)  -     @629 
+#       analysis_export      uvm_analysis_imp            -     @678 
+#       get_ap               uvm_analysis_port           -     @668 
+#       get_peek_export      uvm_get_peek_imp            -     @648 
+#       put_ap               uvm_analysis_port           -     @658 
+#       put_export           uvm_put_imp                 -     @638 
+#     mdl_scb_fifo           uvm_tlm_analysis_fifo #(T)  -     @747 
+#       analysis_export      uvm_analysis_imp            -     @796 
+#       get_ap               uvm_analysis_port           -     @786 
+#       get_peek_export      uvm_get_peek_imp            -     @766 
+#       put_ap               uvm_analysis_port           -     @776 
+#       put_export           uvm_put_imp                 -     @756 
+#     my_agent_i_h           my_agent                    -     @555 
+#       my_driver_h          my_driver                   -     @943 
+#         rsp_port           uvm_analysis_port           -     @962 
+#         seq_item_port      uvm_seq_item_pull_port      -     @952 
+#       my_monitor_i_h       my_monitor_i                -     @972 
+#         ap                 uvm_analysis_port           -     @982 
+#       my_sequencer_h       uvm_sequencer               -     @806 
+#         rsp_export         uvm_analysis_export         -     @815 
+#         seq_item_export    uvm_seq_item_pull_imp       -     @933 
+#         arbitration_queue  array                       0     -    
+#         lock_queue         array                       0     -    
+#         num_last_reqs      integral                    32    'd1  
+#         num_last_rsps      integral                    32    'd1  
+#     my_agent_o_h           my_agent                    -     @564 
+#       my_monitor_o_h       my_monitor_o                -     @998 
+#         ap                 uvm_analysis_port           -     @1007
+#     my_model_h             my_model                    -     @611 
+#       ap                   uvm_analysis_port           -     @1028
+#       bgp                  uvm_blocking_get_port       -     @1018
+#     my_scoreboard_h        my_scoreboard               -     @620 
+#       act_bgp              uvm_blocking_get_port       -     @1048
+#       exp_bgp              uvm_blocking_get_port       -     @1038
+#     my_subscriber_i_h      my_subscriber_i             -     @573 
+#       analysis_imp         uvm_analysis_imp            -     @582 
+#     my_subscriber_o_h      my_subscriber_o             -     @592 
+#       analysis_imp         uvm_analysis_imp            -     @601 
+#     o_agt_scb_fifo         uvm_tlm_analysis_fifo #(T)  -     @688 
+#       analysis_export      uvm_analysis_imp            -     @737 
+#       get_ap               uvm_analysis_port           -     @727 
+#       get_peek_export      uvm_get_peek_imp            -     @707 
+#       put_ap               uvm_analysis_port           -     @717 
+#       put_export           uvm_put_imp                 -     @697 
+#   my_env_h[1]              my_env                      -     @390 
+#     i_agt_mdl_fifo         uvm_tlm_analysis_fifo #(T)  -     @1140
+#       analysis_export      uvm_analysis_imp            -     @1189
+#       get_ap               uvm_analysis_port           -     @1179
+#       get_peek_export      uvm_get_peek_imp            -     @1159
+#       put_ap               uvm_analysis_port           -     @1169
+#       put_export           uvm_put_imp                 -     @1149
+#     mdl_scb_fifo           uvm_tlm_analysis_fifo #(T)  -     @1258
+#       analysis_export      uvm_analysis_imp            -     @1307
+#       get_ap               uvm_analysis_port           -     @1297
+#       get_peek_export      uvm_get_peek_imp            -     @1277
+#       put_ap               uvm_analysis_port           -     @1287
+#       put_export           uvm_put_imp                 -     @1267
+#     my_agent_i_h           my_agent                    -     @1066
+#       my_driver_h          my_driver                   -     @1454
+#         rsp_port           uvm_analysis_port           -     @1473
+#         seq_item_port      uvm_seq_item_pull_port      -     @1463
+#       my_monitor_i_h       my_monitor_i                -     @1483
+#         ap                 uvm_analysis_port           -     @1493
+#       my_sequencer_h       uvm_sequencer               -     @1317
+#         rsp_export         uvm_analysis_export         -     @1326
+#         seq_item_export    uvm_seq_item_pull_imp       -     @1444
+#         arbitration_queue  array                       0     -    
+#         lock_queue         array                       0     -    
+#         num_last_reqs      integral                    32    'd1  
+#         num_last_rsps      integral                    32    'd1  
+#     my_agent_o_h           my_agent                    -     @1075
+#       my_monitor_o_h       my_monitor_o                -     @1509
+#         ap                 uvm_analysis_port           -     @1518
+#     my_model_h             my_model                    -     @1122
+#       ap                   uvm_analysis_port           -     @1539
+#       bgp                  uvm_blocking_get_port       -     @1529
+#     my_scoreboard_h        my_scoreboard               -     @1131
+#       act_bgp              uvm_blocking_get_port       -     @1559
+#       exp_bgp              uvm_blocking_get_port       -     @1549
+#     my_subscriber_i_h      my_subscriber_i             -     @1084
+#       analysis_imp         uvm_analysis_imp            -     @1093
+#     my_subscriber_o_h      my_subscriber_o             -     @1103
+#       analysis_imp         uvm_analysis_imp            -     @1112
+#     o_agt_scb_fifo         uvm_tlm_analysis_fifo #(T)  -     @1199
+#       analysis_export      uvm_analysis_imp            -     @1248
+#       get_ap               uvm_analysis_port           -     @1238
+#       get_peek_export      uvm_get_peek_imp            -     @1218
+#       put_ap               uvm_analysis_port           -     @1228
+#       put_export           uvm_put_imp                 -     @1208
+#   my_env_h[2]              my_env                      -     @399 
+#     i_agt_mdl_fifo         uvm_tlm_analysis_fifo #(T)  -     @1651
+#       analysis_export      uvm_analysis_imp            -     @1700
+#       get_ap               uvm_analysis_port           -     @1690
+#       get_peek_export      uvm_get_peek_imp            -     @1670
+#       put_ap               uvm_analysis_port           -     @1680
+#       put_export           uvm_put_imp                 -     @1660
+#     mdl_scb_fifo           uvm_tlm_analysis_fifo #(T)  -     @1769
+#       analysis_export      uvm_analysis_imp            -     @1818
+#       get_ap               uvm_analysis_port           -     @1808
+#       get_peek_export      uvm_get_peek_imp            -     @1788
+#       put_ap               uvm_analysis_port           -     @1798
+#       put_export           uvm_put_imp                 -     @1778
+#     my_agent_i_h           my_agent                    -     @1577
+#       my_driver_h          my_driver                   -     @1965
+#         rsp_port           uvm_analysis_port           -     @1984
+#         seq_item_port      uvm_seq_item_pull_port      -     @1974
+#       my_monitor_i_h       my_monitor_i                -     @1994
+#         ap                 uvm_analysis_port           -     @2004
+#       my_sequencer_h       uvm_sequencer               -     @1828
+#         rsp_export         uvm_analysis_export         -     @1837
+#         seq_item_export    uvm_seq_item_pull_imp       -     @1955
+#         arbitration_queue  array                       0     -    
+#         lock_queue         array                       0     -    
+#         num_last_reqs      integral                    32    'd1  
+#         num_last_rsps      integral                    32    'd1  
+#     my_agent_o_h           my_agent                    -     @1586
+#       my_monitor_o_h       my_monitor_o                -     @2020
+#         ap                 uvm_analysis_port           -     @2029
+#     my_model_h             my_model                    -     @1633
+#       ap                   uvm_analysis_port           -     @2050
+#       bgp                  uvm_blocking_get_port       -     @2040
+#     my_scoreboard_h        my_scoreboard               -     @1642
+#       act_bgp              uvm_blocking_get_port       -     @2070
+#       exp_bgp              uvm_blocking_get_port       -     @2060
+#     my_subscriber_i_h      my_subscriber_i             -     @1595
+#       analysis_imp         uvm_analysis_imp            -     @1604
+#     my_subscriber_o_h      my_subscriber_o             -     @1614
+#       analysis_imp         uvm_analysis_imp            -     @1623
+#     o_agt_scb_fifo         uvm_tlm_analysis_fifo #(T)  -     @1710
+#       analysis_export      uvm_analysis_imp            -     @1759
+#       get_ap               uvm_analysis_port           -     @1749
+#       get_peek_export      uvm_get_peek_imp            -     @1729
+#       put_ap               uvm_analysis_port           -     @1739
+#       put_export           uvm_put_imp                 -     @1719
+#   my_vsequencer_h          my_vsequencer               -     @408 
+#     rsp_export             uvm_analysis_export         -     @417 
+#     seq_item_export        uvm_seq_item_pull_imp       -     @535 
+#     arbitration_queue      array                       0     -    
+#     lock_queue             array                       0     -    
+#     num_last_reqs          integral                    32    'd1  
+#     num_last_rsps          integral                    32    'd1  
+# ------------------------------------------------------------------
+# 
+# UVM_INFO .\uvm_mhsa\my_env_pkg.sv(323) @ 174105000: uvm_test_top.my_env_h[0].my_model_h [my_model] MHSA calculation completed
+# UVM_INFO .\uvm_mhsa\my_env_pkg.sv(323) @ 208926000: uvm_test_top.my_env_h[1].my_model_h [my_model] MHSA calculation completed
+# UVM_INFO .\uvm_mhsa\my_env_pkg.sv(323) @ 243747000: uvm_test_top.my_env_h[2].my_model_h [my_model] MHSA calculation completed
+# UVM_INFO .\uvm_mhsa\my_test_pkg.sv(135) @ 448065000: uvm_test_top [test0] acc compute finished!
+# UVM_INFO .\uvm_mhsa\my_env_pkg.sv(368) @ 453185000: uvm_test_top.my_env_h[0].my_scoreboard_h [my_scoreboard] Check Passed!
+# UVM_INFO .\uvm_mhsa\my_env_pkg.sv(369) @ 453185000: uvm_test_top.my_env_h[0].my_scoreboard_h [my_scoreboard] Total number of transactions: 512
+# UVM_INFO .\uvm_mhsa\my_env_pkg.sv(370) @ 453185000: uvm_test_top.my_env_h[0].my_scoreboard_h [my_scoreboard] Number of wrong transactions: 0
+# UVM_INFO .\uvm_mhsa\my_test_pkg.sv(163) @ 537678000: uvm_test_top [test0] acc compute finished!
+# UVM_INFO .\uvm_mhsa\my_env_pkg.sv(368) @ 543822000: uvm_test_top.my_env_h[1].my_scoreboard_h [my_scoreboard] Check Passed!
+# UVM_INFO .\uvm_mhsa\my_env_pkg.sv(369) @ 543822000: uvm_test_top.my_env_h[1].my_scoreboard_h [my_scoreboard] Total number of transactions: 512
+# UVM_INFO .\uvm_mhsa\my_env_pkg.sv(370) @ 543822000: uvm_test_top.my_env_h[1].my_scoreboard_h [my_scoreboard] Number of wrong transactions: 0
+# UVM_INFO .\uvm_mhsa\my_test_pkg.sv(192) @ 627291000: uvm_test_top [test0] acc compute finished!
+# UVM_INFO .\uvm_mhsa\my_env_pkg.sv(368) @ 634459000: uvm_test_top.my_env_h[2].my_scoreboard_h [my_scoreboard] Check Passed!
+# UVM_INFO .\uvm_mhsa\my_env_pkg.sv(369) @ 634459000: uvm_test_top.my_env_h[2].my_scoreboard_h [my_scoreboard] Total number of transactions: 512
+# UVM_INFO .\uvm_mhsa\my_env_pkg.sv(370) @ 634459000: uvm_test_top.my_env_h[2].my_scoreboard_h [my_scoreboard] Number of wrong transactions: 0
 # UVM_INFO D:/questasim/questa_sim/verilog_src/uvm-1.2/src/base/uvm_objection.svh(1271) @ 735445000: reporter [TEST_DONE] 'run' phase is ready to proceed to the 'extract' phase
 ###########################################
 ############    TEST PASSED    ############
@@ -108,7 +286,8 @@ run -all
 # [RNTST]     1
 # [TEST_DONE]     1
 # [UVM/RELNOTES]     1
-# [my_env]     4
+# [UVMTOP]     1
+# [my_env]     3
 # [my_model]     3
 # [my_scoreboard]     9
 # [my_test]     1
@@ -118,6 +297,7 @@ run -all
 #    Time: 735445 ns  Iteration: 67  Instance: /my_top
 # 1
 # Break in Task uvm_pkg/uvm_root::run_test at D:/questasim/questa_sim/verilog_src/uvm-1.2/src/base/uvm_root.svh line 517
+# Causality operation skipped due to absence of debug database file
 coverage report -output ./uvm_mhsa/report/coverage_report.txt
-# End time: 16:54:55 on May 11,2025, Elapsed time: 0:01:12
-# Errors: 0, Warnings: 1
+# End time: 17:23:23 on May 18,2025, Elapsed time: 1:13:46
+# Errors: 0, Warnings: 2

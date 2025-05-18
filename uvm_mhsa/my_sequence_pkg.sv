@@ -34,7 +34,7 @@ package my_sequence_pkg;
 
     // constraint here
     constraint c_addr {
-      soc_addr inside {[0:4095]};
+      soc_addr inside {[0:32'h0000_3FFF]};
     }
 
     function new(string name = "");

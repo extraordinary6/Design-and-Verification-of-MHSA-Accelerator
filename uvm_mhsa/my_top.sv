@@ -30,6 +30,8 @@
 
 // include assertion file
 `include "if_assertion.sv"
+
+// include UVM files
 `include "dut_top.sv"
 `include "dut.sv"
 `include "dut_if.sv"
@@ -45,7 +47,7 @@ module my_top;
   import my_agent_pkg::*;
   import my_env_pkg::*;
   import my_test_pkg::*;
-  parameter NUM_ENV = 4;
+  parameter NUM_ENV = 3;
 
   genvar i;
 

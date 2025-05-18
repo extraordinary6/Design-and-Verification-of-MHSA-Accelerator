@@ -56,7 +56,7 @@ package my_env_pkg;
       }
 
       cov_soc_addr : coverpoint soc_addr {
-        bins bar0 = {[32'h0000_0000 : 32'h0000_0FFF]}; // X
+        bins bar0 = {[32'h0000_0000 : 32'h0000_0FFF]}; // O, X
         bins bar1 = {[32'h0000_1000 : 32'h0000_1FFF]}; // Q
         bins bar2 = {[32'h0000_2000 : 32'h0000_2FFF]}; // K
         bins bar3 = {[32'h0000_3000 : 32'h0000_3FFF]}; // V
