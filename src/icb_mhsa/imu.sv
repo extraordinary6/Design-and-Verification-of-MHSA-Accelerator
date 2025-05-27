@@ -142,7 +142,7 @@ wire usram_sel;
 assign usram_addr = {16'b0,icb_cmd_addr[18:3]};    // usram width 64 bit = 8 byte -> low 3 bits for byte offset
 assign is_low_part = (icb_cmd_addr[2] == 1'b0);
 assign icb_write_en = icb_cmd_valid & icb_cmd_ready & !icb_cmd_read;
-assign usram_sel = (usram_addr > 'h0000 && usram_addr < 'h4000);
+assign usram_sel = (usram_addr >= 'h0000 && usram_addr < 'h4000);
 
 always@(posedge clk) 
 begin
