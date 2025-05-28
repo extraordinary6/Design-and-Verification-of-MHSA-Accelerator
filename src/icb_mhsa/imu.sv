@@ -39,8 +39,19 @@ module imu(
     // usram interface
     output  [31:0]      usram_addr,
     output  reg [63:0]  usram_wdata,
-    output  reg         usram_write_en
+    output  reg         usram_write_en,
+    input   [31:0]      usram_rdata
 );
+
+wire is_low_part;
+wire icb_write_en;
+wire usram_sel;
+
+// [------------------------------- addr decoder -------------------------------]
+assign usram_addr = {16'b0,icb_cmd_addr[18:3]};    // usram width 64 bit = 8 byte -> low 3 bits for byte offset
+assign is_low_part = (icb_cmd_addr[2] == 1'b0);
+assign icb_write_en = icb_cmd_valid & icb_cmd_ready & !icb_cmd_read;
+assign usram_sel = (usram_addr >= 'h0000 && usram_addr < 'h4000);
 
 // [------------------------------- icb -------------------------------]
 assign icb_rsp_err = 1'b0;
@@ -124,6 +135,14 @@ begin
                 `DONE:  icb_rsp_rdata <= done;
                 `INPUT_BASE:  icb_rsp_rdata <= input_base;
                 `OUTPUT_BASE: icb_rsp_rdata <= output_base;
+                dafault: begin
+                    if(usram_sel) begin
+                        icb_rsp_rdata <= is_low_part ? usram_rdata[31:0] : usram_rdata[63:32];  // read usram data
+                    end
+                    else begin
+                        icb_rsp_rdata <= 32'h0;         // default return 0
+                    end
+                end
             endcase
         end
         else begin
@@ -135,15 +154,6 @@ end
 // [------------------------------- icb2usram -------------------------------]
 // icb to usram interface : merge double-32bit-write to 64bit-write
 // usram address : 0x0000_0000 ~ 0x0000_3FFF
-wire is_low_part;
-wire icb_write_en;
-wire usram_sel;
-
-assign usram_addr = {16'b0,icb_cmd_addr[18:3]};    // usram width 64 bit = 8 byte -> low 3 bits for byte offset
-assign is_low_part = (icb_cmd_addr[2] == 1'b0);
-assign icb_write_en = icb_cmd_valid & icb_cmd_ready & !icb_cmd_read;
-assign usram_sel = (usram_addr >= 'h0000 && usram_addr < 'h4000);
-
 always@(posedge clk) 
 begin
     if(!rst_n) begin
@@ -178,8 +188,6 @@ begin
         usram_write_en <= 1'b0;
     end
 end
-
-
 
 
 endmodule
