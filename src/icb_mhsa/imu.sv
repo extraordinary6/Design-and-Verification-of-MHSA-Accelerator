@@ -41,7 +41,7 @@ module imu(
     output  [31:0]      usram_addr,
     output  reg [63:0]  usram_wdata,
     output  reg         usram_write_en,
-    input   [31:0]      usram_rdata
+    input   [63:0]      usram_rdata
 );
 
 wire is_low_part;
