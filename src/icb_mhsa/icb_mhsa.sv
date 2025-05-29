@@ -30,11 +30,12 @@ module icb_mhsa#(
 
 wire [31:0] input_base;
 wire [31:0] output_base;
-wire start;
-wire done;
+wire [31:0] start;
+wire [31:0] done;
 
 wire [31:0] usram_addr;
 wire [63:0] usram_wdata;
+wire [63:0] usram_rdata;
 wire usram_write_en;
 
 imu imu_inst (
@@ -54,15 +55,16 @@ imu imu_inst (
     .rst_n(rst_n)
 
     // CSR output
-    .start({31'b0,start}),
-    .done({31'b0,done}),
+    .start(start),
+    .done(done),
     .input_base(input_base),
     .output_base(output_base)
 
     // usram
     .usram_addr(usram_addr),
     .usram_wdata(usram_wdata),
-    .usram_write_en(usram_write_en)
+    .usram_write_en(usram_write_en)，
+    .usram_rdata(usram_rdata)
 );
 
 mhsa_acc_wrapper #(
@@ -73,8 +75,8 @@ mhsa_acc_wrapper #(
     .rst_n(rst_n),
 
     // control signals
-    .done(done),
-    .start(start),
+    .done(done[0]),
+    .start(start[0]),
     .input_base(input_base),
     .output_base(output_base),
 
@@ -82,7 +84,7 @@ mhsa_acc_wrapper #(
     .soc_write_en(usram_write_en),
     .soc_data_in(usram_wdata),
     .soc_addr(usram_addr),
-    .soc_data_out()
+    .soc_data_out(usram_rdata)
 );
 
 
