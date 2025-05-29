@@ -2,16 +2,16 @@
 // Description: 
 // Interface manage unit
 // Generates data/address for the Usram & input_base signals for CSR
-// Designer : wangziyao1@sjtu.edu.cn
+// Designer : wangziyao1@sjtu.edu.cn, extraordinary.h@sjtu.edu.cn
 // Revision History: 
 // V0 date: Initial version @ 2024/5/27
 // V1 date: Swap the reading order of usram, change the address of reg.
 // ==================================================================== 
 
-`define START              18'h20000
-`define DONE               18'h20004
-`define INPUT_BASE         18'h20008
-`define OUTPUT_BASE        18'h2000c
+`define START              18'h70000
+`define DONE               18'h70004
+`define INPUT_BASE         18'h70008
+`define OUTPUT_BASE        18'h7000c
 
 module imu(
     // icb bus
@@ -35,10 +35,10 @@ module imu(
     output  reg [31:0]  start,
     output  reg [31:0]  done,
     output  reg [31:0]  input_base,
-    input   reg [31:0]  output_base,
+    output  reg [31:0]  output_base,
 
     // usram interface
-    output  [31:0]      usram_addr,
+    output  reg [31:0]  usram_addr,
     output  reg [63:0]  usram_wdata,
     output  reg         usram_write_en,
     input   [63:0]      usram_rdata
@@ -49,7 +49,17 @@ wire icb_write_en;
 wire usram_sel;
 
 // [------------------------------- addr decoder -------------------------------]
-assign usram_addr = {16'b0,icb_cmd_addr[18:3]};    // usram width 64 bit = 8 byte -> low 3 bits for byte offset
+//assign usram_addr = {16'b0,icb_cmd_addr[18:3]} - 'ha000;    // usram width 64 bit = 8 byte -> low 3 bits for byte offset
+always@(posedge clk)
+begin
+    if(!rst_n) begin
+        usram_addr <= 1'b0;
+    end
+	else begin
+		usram_addr <= {16'b0,icb_cmd_addr[18:3]} - 'ha000;
+	end
+end
+
 assign is_low_part = (icb_cmd_addr[2] == 1'b0);
 assign icb_write_en = icb_cmd_valid & icb_cmd_ready & !icb_cmd_read;
 assign usram_sel = (usram_addr >= 'h0000 && usram_addr < 'h4000);
