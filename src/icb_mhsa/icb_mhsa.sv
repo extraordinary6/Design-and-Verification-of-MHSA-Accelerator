@@ -52,7 +52,7 @@ imu imu_inst (
     .icb_rsp_err(icb_rsp_err),
 
     .clk(clk),
-    .rst_n(rst_n)
+    .rst_n(rst_n),
 
     // CSR output
     .start(start),
