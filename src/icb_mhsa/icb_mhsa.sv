@@ -58,12 +58,12 @@ imu imu_inst (
     .start(start),
     .done(done),
     .input_base(input_base),
-    .output_base(output_base)
+    .output_base(output_base),
 
     // usram
     .usram_addr(usram_addr),
     .usram_wdata(usram_wdata),
-    .usram_write_en(usram_write_en)，
+    .usram_write_en(usram_write_en),
     .usram_rdata(usram_rdata)
 );
 
