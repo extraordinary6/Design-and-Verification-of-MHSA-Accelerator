@@ -8,10 +8,10 @@
 // V1 date: Swap the reading order of usram, change the address of reg.
 // ==================================================================== 
 
-`define START              16'h20000
-`define DONE               16'h20004
-`define INPUT_BASE         16'h20008
-`define OUTPUT_BASE        16'h2000c
+`define START              18'h20000
+`define DONE               18'h20004
+`define INPUT_BASE         18'h20008
+`define OUTPUT_BASE        18'h2000c
 
 module imu(
     // icb bus
@@ -87,7 +87,7 @@ begin
     end
     else begin
         if(icb_cmd_valid & icb_cmd_ready & !icb_cmd_read) begin
-            case(icb_cmd_addr[15:0])
+            case(icb_cmd_addr[17:0])
                 `START:  start <= icb_cmd_wdata;
                 `DONE:  done <= icb_cmd_wdata;
                 `INPUT_BASE:  input_base <= icb_cmd_wdata;
@@ -131,12 +131,12 @@ begin
     end
     else begin
         if(icb_cmd_valid & icb_cmd_ready & icb_cmd_read) begin
-            case(icb_cmd_addr[15:0])
+            case(icb_cmd_addr[17:0])
                 `START:  icb_rsp_rdata <= start;
                 `DONE:  icb_rsp_rdata <= done;
                 `INPUT_BASE:  icb_rsp_rdata <= input_base;
                 `OUTPUT_BASE: icb_rsp_rdata <= output_base;
-                dafault: begin
+                default: begin
                     if(usram_sel) begin
                         icb_rsp_rdata <= is_low_part ? usram_rdata[63:32] : usram_rdata[31:0];  // read usram data
                     end
