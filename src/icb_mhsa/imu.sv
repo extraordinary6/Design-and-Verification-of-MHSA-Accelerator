@@ -4,13 +4,14 @@
 // Generates data/address for the Usram & input_base signals for CSR
 // Designer : wangziyao1@sjtu.edu.cn
 // Revision History: 
-// V0 date:Initial version @ 2024/5/27
+// V0 date: Initial version @ 2024/5/27
+// V1 date: Swap the reading order of usram, change the address of reg.
 // ==================================================================== 
 
-`define start              16'h4000
-`define done               16'h4004
-`define input_base         16'h4008
-`define OUTPUT_BASE        16'h400c
+`define START              16'h20000
+`define DONE               16'h20004
+`define INPUT_BASE         16'h20008
+`define OUTPUT_BASE        16'h2000c
 
 module imu(
     // icb bus
@@ -34,7 +35,7 @@ module imu(
     output  reg [31:0]  start,
     output  reg [31:0]  done,
     output  reg [31:0]  input_base,
-    input  reg [31:0]  output_base,
+    input   reg [31:0]  output_base,
 
     // usram interface
     output  [31:0]      usram_addr,
@@ -137,7 +138,7 @@ begin
                 `OUTPUT_BASE: icb_rsp_rdata <= output_base;
                 dafault: begin
                     if(usram_sel) begin
-                        icb_rsp_rdata <= is_low_part ? usram_rdata[31:0] : usram_rdata[63:32];  // read usram data
+                        icb_rsp_rdata <= is_low_part ? usram_rdata[63:32] : usram_rdata[31:0];  // read usram data
                     end
                     else begin
                         icb_rsp_rdata <= 32'h0;         // default return 0
@@ -162,12 +163,12 @@ begin
     else begin
         if(icb_write_en & usram_sel) begin
             if(is_low_part) begin
-                usram_wdata[31:0] <= icb_cmd_wdata;
-                usram_wdata[63:32] <= usram_wdata[63:32];   // hold
-            end
-            else begin
                 usram_wdata[31:0] <= usram_wdata[31:0];
                 usram_wdata[63:32] <= icb_cmd_wdata;
+            end
+            else begin
+                usram_wdata[31:0] <= icb_cmd_wdata;
+                usram_wdata[63:32] <= usram_wdata[63:32];   // hold
             end
         end
         else begin
