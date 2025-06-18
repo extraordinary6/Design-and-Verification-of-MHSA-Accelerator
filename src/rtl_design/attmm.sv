@@ -3,8 +3,8 @@
 // qkmm layer : QK * VT
 // Designer : wangziyao1@sjtu.edu.cn
 // Revision History: 
-// V0 date:Initial version @ 2024/5/7
-// V1 date:Parameterize @ 2024/5/8
+// V0 date:Initial version @ 2025/5/7
+// V1 date:Parameterize @ 2025/5/8
 // ==================================================================== 
 
 module attmm#(

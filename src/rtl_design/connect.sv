@@ -3,7 +3,7 @@
 // linear layer : ATT * W -> OUT
 // Designer : wangziyao1@sjtu.edu.cn
 // Revision History: 
-// V0 date:Initial version @ 2024/5/8
+// V0 date:Initial version @ 2025/5/8
 // ==================================================================== 
 
 // only for linear tb

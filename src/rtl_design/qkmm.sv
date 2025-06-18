@@ -3,10 +3,10 @@
 // qkmm layer : Q * KT
 // Designer : wangziyao1@sjtu.edu.cn
 // Revision History: 
-// V0 date:Initial version @ 2024/4/22
-// V1 date:Fix the bug and complete testbench @ 2024/4/24
-// V2 date:Spilit read/write channel @ 2024/5/7
-// V3 date:Parameterize @ 2024/5/8
+// V0 date:Initial version @ 2025/4/22
+// V1 date:Fix the bug and complete testbench @ 2025/4/24
+// V2 date:Spilit read/write channel @ 2025/5/7
+// V3 date:Parameterize @ 2025/5/8
 // ==================================================================== 
 
 module qkmm#(

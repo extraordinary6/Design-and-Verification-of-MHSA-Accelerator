@@ -14,10 +14,10 @@
 //  |-- arbiter
 // Designer : wangziyao1@sjtu.edu.cn
 // Revision History: 
-// V0 date:Initial version @ 2024/3/28
-// V1 date:Instantiate linear @ 2024/4/21
-// V2 data:Add qkmm attmm arbiter @ 2024/4/24
-// V3 data:add conncet @ 2024/5/8
+// V0 date:Initial version @ 2025/3/28
+// V1 date:Instantiate linear @ 2025/4/21
+// V2 data:Add qkmm attmm arbiter @ 2025/4/24
+// V3 data:add conncet @ 2025/5/8
 // ==================================================================== 
 
 module mhsa_acc_top#(

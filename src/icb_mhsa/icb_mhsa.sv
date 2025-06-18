@@ -6,7 +6,7 @@
 // |-- mhsa accelerator top
 // Designer : wangziyao1@sjtu.edu.cn
 // Revision History: 
-// V0 date:Initial version @ 2024/5/27
+// V0 date:Initial version @ 2025/5/27
 // ====================================================================
 
 module icb_mhsa#(
@@ -31,7 +31,7 @@ module icb_mhsa#(
 wire [31:0] input_base;
 wire [31:0] output_base;
 wire [31:0] start;
-wire [31:0] done;
+wire 		done;
 
 wire [31:0] usram_addr;
 wire [63:0] usram_wdata;
@@ -56,7 +56,7 @@ imu imu_inst (
 
     // CSR output
     .start(start),
-    .done(done),
+    .acc_done({31'b0, done}),
     .input_base(input_base),
     .output_base(output_base),
 
@@ -75,7 +75,7 @@ mhsa_acc_wrapper #(
     .rst_n(rst_n),
 
     // control signals
-    .done(done[0]),
+    .done(done),
     .start(start[0]),
     .input_base(input_base),
     .output_base(output_base),

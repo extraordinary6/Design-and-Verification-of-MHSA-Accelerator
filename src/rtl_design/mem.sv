@@ -3,7 +3,7 @@
 // mem pre-simulation model
 // Designer : wangziyao1@sjtu.edu.cn
 // Revision History: 
-// V0 date:Initial version @ 2024/3/28
+// V0 date:Initial version @ 2025/3/28
 // ==================================================================== 
 
 module mem #(

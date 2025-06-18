@@ -12,8 +12,8 @@
 //  |-- mhsa_acc_top
 // Designer : wangziyao1@sjtu.edu.cn
 // Revision History: 
-// V0 date:Initial version @ 2024/3/28
-// V1 date:Modify arb logic @ 2024/4/21
+// V0 date:Initial version @ 2025/3/28
+// V1 date:Modify arb logic @ 2025/4/21
 // ==================================================================== 
 
 module mhsa_acc_wrapper#(

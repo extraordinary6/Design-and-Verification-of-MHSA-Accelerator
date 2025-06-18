@@ -1,12 +1,12 @@
 //===================================================================== 
 // Description: 
-// mm systolic : 8x8 systolic array for matrix multiplication (8,N)¡Á(N,8)
+// mm systolic : 8x8 systolic array for matrix multiplication (8,N)ï¿½ï¿½(N,8)
 // every cell stores 8*8 matrix, and the output is 8*8 matrix
 // Designer : wangziyao1@sjtu.edu.cn
 // Revision History: 
-// V0 date:Initial version @ 2024/4/1   :) Happy April Fool's Day :)
-// V1 date:Fix the bug and complete testbench @ 2024/4/2
-// V2 date:Add flush signal from linear layer to reset @ 2024/4/20
+// V0 date:Initial version @ 2025/4/1   :) Happy April Fool's Day :)
+// V1 date:Fix the bug and complete testbench @ 2025/4/2
+// V2 date:Add flush signal from linear layer to reset @ 2025/4/20
 // Reference:
 // https://blog.csdn.net/wordwarwordwar/article/details/103537996
 // ==================================================================== 

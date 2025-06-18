@@ -3,7 +3,7 @@
 // mem with X data pre-simulation model
 // Designer : wangziyao1@sjtu.edu.cn
 // Revision History: 
-// V0 date:Initial version @ 2024/4/18
+// V0 date:Initial version @ 2025/4/18
 // ==================================================================== 
 
 module mem_x #(

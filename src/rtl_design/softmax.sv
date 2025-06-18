@@ -3,9 +3,9 @@
 // softmax layer : scale and softmax
 // Designer : wangziyao1@sjtu.edu.cn
 // Revision History: 
-// V0 date:Initial version @ 2024/4/28
-// V1 date:Remove softmax_core @ 2024/5/2
-// V2 date:Parameterize @ 2024/5/8
+// V0 date:Initial version @ 2025/4/28
+// V1 date:Remove softmax_core @ 2025/5/2
+// V2 date:Parameterize @ 2025/5/8
 // ==================================================================== 
 
 module softmax#(

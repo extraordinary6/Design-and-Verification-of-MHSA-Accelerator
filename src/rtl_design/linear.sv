@@ -12,11 +12,11 @@
 //  |-- debug logic(opt.)
 // Designer : wangziyao1@sjtu.edu.cn
 // Revision History: 
-// V0 date:Initial version @ 2024/4/17
-// V1 date:Fix the bug and complete testbench @ 2024/4/20
-// V2 data:Merge bar2 to bar1 @ 2024/4/21
-// v3 data:Modify Weight (32,128) -> (128,32) @ 2024/4/24
-// v4 data:parameterize @ 2024/5/8
+// V0 date:Initial version @ 2025/4/17
+// V1 date:Fix the bug and complete testbench @ 2025/4/20
+// V2 data:Merge bar2 to bar1 @ 2025/4/21
+// v3 data:Modify Weight (32,128) -> (128,32) @ 2025/4/24
+// v4 data:parameterize @ 2025/5/8
 // ==================================================================== 
 
 // only for linear tb
