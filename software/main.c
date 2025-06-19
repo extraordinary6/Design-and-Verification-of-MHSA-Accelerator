@@ -1,3 +1,10 @@
+//=====================================================================
+// Description:
+// Software driver
+// Designer : Huang Chaofan, extraordinary.h@sjtu.edu.cn
+// Revision History:
+// V0 date: 5.30 Initial version, Huang Chaofan
+// ====================================================================
 #include <stdio.h>
 #include <time.h>
 #include <stdlib.h>
