@@ -1,0 +1,56 @@
+Loading db file '/home/MicroE/library/lib/SRAM.db'
+Loading db file '/home/MicroE/library/lib/gscl45nm.db'
+Information: Propagating switching activity (low effort zero delay simulation). (PWR-6)
+Warning: Design has unannotated primary inputs. (PWR-414)
+Warning: Design has unannotated sequential cell outputs. (PWR-415)
+Warning: Design has unannotated black box outputs. (PWR-428)
+ 
+****************************************
+Report : power
+        -analysis_effort low
+Design : mhsa_acc_wrapper
+Version: O-2018.06-SP1
+Date   : Thu Jun 12 18:51:41 2025
+****************************************
+
+
+Library(s) Used:
+
+    gscl45nm (File: /home/MicroE/library/lib/gscl45nm.db)
+    ts1n28hpcpsvtb8192x64m8swso_tt1p1v27c (File: /home/MicroE/library/lib/SRAM.db)
+
+
+Operating Conditions: typical   Library: gscl45nm
+Wire Load Model Mode: top
+
+
+Global Operating Voltage = 1.1  
+Power-specific unit information :
+    Voltage Units = 1V
+    Capacitance Units = 1.000000pf
+    Time Units = 1ns
+    Dynamic Power Units = 1mW    (derived from V,C,T units)
+    Leakage Power Units = 1nW
+
+
+  Cell Internal Power  =  90.4028 mW   (88%)
+  Net Switching Power  =  11.7859 mW   (12%)
+                         ---------
+Total Dynamic Power    = 102.1888 mW  (100%)
+
+Cell Leakage Power     =   5.2461 mW
+
+
+                 Internal         Switching           Leakage            Total
+Power Group      Power            Power               Power              Power   (   %    )  Attrs
+--------------------------------------------------------------------------------------------------
+io_pad             0.0000            0.0000            0.0000            0.0000  (   0.00%)
+memory             0.0000        1.1882e-02        7.0483e+04        8.2365e-02  (   0.08%)
+black_box          0.0000            0.0000            0.0000            0.0000  (   0.00%)
+clock_network      0.0000            0.0000            0.0000            0.0000  (   0.00%)
+register          77.6614            0.5968        1.2723e+06           79.5307  (  74.03%)
+sequential         0.0000            0.0000            0.0000            0.0000  (   0.00%)
+combinational     12.7387           11.1774        3.9034e+06           27.8193  (  25.89%)
+--------------------------------------------------------------------------------------------------
+Total             90.4001 mW        11.7861 mW     5.2461e+06 nW       107.4324 mW
+1

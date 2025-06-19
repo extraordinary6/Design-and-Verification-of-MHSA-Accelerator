@@ -1,0 +1,401 @@
+ 
+****************************************
+Report : timing
+        -path full
+        -delay max
+        -max_paths 1
+Design : mhsa_acc_wrapper
+Version: O-2018.06-SP1
+Date   : Thu Jun 12 18:52:08 2025
+****************************************
+
+ # A fanout number of 1000 was used for high fanout net computations.
+
+Operating Conditions: typical   Library: gscl45nm
+Wire Load Model Mode: top
+
+  Startpoint: mhsa_acc_top_inst/linear_k/mm_systolic_inst/genblk1[6].genblk1[0].pe_inst/col_o_reg[3]
+              (rising edge-triggered flip-flop clocked by clk)
+  Endpoint: mhsa_acc_top_inst/linear_k/mm_systolic_inst/genblk1[7].genblk1[0].pe_inst/res_reg[31]
+            (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock clk (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  mhsa_acc_top_inst/linear_k/mm_systolic_inst/genblk1[6].genblk1[0].pe_inst/col_o_reg[3]/CLK (DFFPOSX1)
+                                                          0.00 #     0.00 r
+  mhsa_acc_top_inst/linear_k/mm_systolic_inst/genblk1[6].genblk1[0].pe_inst/col_o_reg[3]/Q (DFFPOSX1)
+                                                          0.11       0.11 f
+  mhsa_acc_top_inst/linear_k/mm_systolic_inst/genblk1[6].genblk1[0].pe_inst/col_o[3] (pe_272)
+                                                          0.00       0.11 f
+  mhsa_acc_top_inst/linear_k/mm_systolic_inst/genblk1[7].genblk1[0].pe_inst/col_i[3] (pe_264)
+                                                          0.00       0.11 f
+  mhsa_acc_top_inst/linear_k/mm_systolic_inst/genblk1[7].genblk1[0].pe_inst/mult_40/B[3] (pe_264_DW02_mult_0)
+                                                          0.00       0.11 f
+  mhsa_acc_top_inst/linear_k/mm_systolic_inst/genblk1[7].genblk1[0].pe_inst/mult_40/U158/Y (INVX1)
+                                                          0.05       0.16 r
+  mhsa_acc_top_inst/linear_k/mm_systolic_inst/genblk1[7].genblk1[0].pe_inst/mult_40/U18/Y (OR2X2)
+                                                          0.05       0.21 r
+  mhsa_acc_top_inst/linear_k/mm_systolic_inst/genblk1[7].genblk1[0].pe_inst/mult_40/U118/Y (INVX1)
+                                                          0.03       0.23 f
+  mhsa_acc_top_inst/linear_k/mm_systolic_inst/genblk1[7].genblk1[0].pe_inst/mult_40/U23/Y (AND2X2)
+                                                          0.04       0.28 f
+  mhsa_acc_top_inst/linear_k/mm_systolic_inst/genblk1[7].genblk1[0].pe_inst/mult_40/S2_2_2/YC (FAX1)
+                                                          0.09       0.36 f
+  mhsa_acc_top_inst/linear_k/mm_systolic_inst/genblk1[7].genblk1[0].pe_inst/mult_40/S2_3_2/YC (FAX1)
+                                                          0.09       0.46 f
+  mhsa_acc_top_inst/linear_k/mm_systolic_inst/genblk1[7].genblk1[0].pe_inst/mult_40/S2_4_2/YS (FAX1)
+                                                          0.10       0.56 f
+  mhsa_acc_top_inst/linear_k/mm_systolic_inst/genblk1[7].genblk1[0].pe_inst/mult_40/S2_5_1/YC (FAX1)
+                                                          0.09       0.65 f
+  mhsa_acc_top_inst/linear_k/mm_systolic_inst/genblk1[7].genblk1[0].pe_inst/mult_40/S2_6_1/YS (FAX1)
+                                                          0.10       0.75 r
+  mhsa_acc_top_inst/linear_k/mm_systolic_inst/genblk1[7].genblk1[0].pe_inst/mult_40/S4_0/YS (FAX1)
+                                                          0.10       0.84 r
+  mhsa_acc_top_inst/linear_k/mm_systolic_inst/genblk1[7].genblk1[0].pe_inst/mult_40/S14_7_0/YC (FAX1)
+                                                          0.06       0.90 r
+  mhsa_acc_top_inst/linear_k/mm_systolic_inst/genblk1[7].genblk1[0].pe_inst/mult_40/FS_1/B[6] (pe_264_DW01_add_J4_0)
+                                                          0.00       0.90 r
+  mhsa_acc_top_inst/linear_k/mm_systolic_inst/genblk1[7].genblk1[0].pe_inst/mult_40/FS_1/U7/Y (AND2X2)
+                                                          0.04       0.94 r
+  mhsa_acc_top_inst/linear_k/mm_systolic_inst/genblk1[7].genblk1[0].pe_inst/mult_40/FS_1/U66/Y (AOI21X1)
+                                                          0.02       0.96 f
+  mhsa_acc_top_inst/linear_k/mm_systolic_inst/genblk1[7].genblk1[0].pe_inst/mult_40/FS_1/U44/Y (INVX1)
+                                                          0.02       0.97 r
+  mhsa_acc_top_inst/linear_k/mm_systolic_inst/genblk1[7].genblk1[0].pe_inst/mult_40/FS_1/U5/Y (AND2X2)
+                                                          0.03       1.01 r
+  mhsa_acc_top_inst/linear_k/mm_systolic_inst/genblk1[7].genblk1[0].pe_inst/mult_40/FS_1/U4/Y (INVX1)
+                                                          0.02       1.02 f
+  mhsa_acc_top_inst/linear_k/mm_systolic_inst/genblk1[7].genblk1[0].pe_inst/mult_40/FS_1/U41/Y (AND2X2)
+                                                          0.04       1.06 f
+  mhsa_acc_top_inst/linear_k/mm_systolic_inst/genblk1[7].genblk1[0].pe_inst/mult_40/FS_1/U64/Y (OAI21X1)
+                                                          0.06       1.12 r
+  mhsa_acc_top_inst/linear_k/mm_systolic_inst/genblk1[7].genblk1[0].pe_inst/mult_40/FS_1/U63/Y (AOI21X1)
+                                                          0.04       1.16 f
+  mhsa_acc_top_inst/linear_k/mm_systolic_inst/genblk1[7].genblk1[0].pe_inst/mult_40/FS_1/U19/Y (BUFX2)
+                                                          0.04       1.20 f
+  mhsa_acc_top_inst/linear_k/mm_systolic_inst/genblk1[7].genblk1[0].pe_inst/mult_40/FS_1/U62/Y (XNOR2X1)
+                                                          0.04       1.24 r
+  mhsa_acc_top_inst/linear_k/mm_systolic_inst/genblk1[7].genblk1[0].pe_inst/mult_40/FS_1/SUM[11] (pe_264_DW01_add_J4_0)
+                                                          0.00       1.24 r
+  mhsa_acc_top_inst/linear_k/mm_systolic_inst/genblk1[7].genblk1[0].pe_inst/mult_40/PRODUCT[13] (pe_264_DW02_mult_0)
+                                                          0.00       1.24 r
+  mhsa_acc_top_inst/linear_k/mm_systolic_inst/genblk1[7].genblk1[0].pe_inst/add_40/A[13] (pe_264_DW01_add_J6_0)
+                                                          0.00       1.24 r
+  mhsa_acc_top_inst/linear_k/mm_systolic_inst/genblk1[7].genblk1[0].pe_inst/add_40/U27/Y (OR2X2)
+                                                          0.05       1.29 r
+  mhsa_acc_top_inst/linear_k/mm_systolic_inst/genblk1[7].genblk1[0].pe_inst/add_40/U3/Y (INVX1)
+                                                          0.02       1.31 f
+  mhsa_acc_top_inst/linear_k/mm_systolic_inst/genblk1[7].genblk1[0].pe_inst/add_40/U311/Y (OAI21X1)
+                                                          0.04       1.35 r
+  mhsa_acc_top_inst/linear_k/mm_systolic_inst/genblk1[7].genblk1[0].pe_inst/add_40/U25/Y (AND2X2)
+                                                          0.03       1.38 r
+  mhsa_acc_top_inst/linear_k/mm_systolic_inst/genblk1[7].genblk1[0].pe_inst/add_40/U91/Y (INVX1)
+                                                          0.01       1.39 f
+  mhsa_acc_top_inst/linear_k/mm_systolic_inst/genblk1[7].genblk1[0].pe_inst/add_40/U89/Y (AND2X2)
+                                                          0.03       1.43 f
+  mhsa_acc_top_inst/linear_k/mm_systolic_inst/genblk1[7].genblk1[0].pe_inst/add_40/U90/Y (INVX1)
+                                                          0.00       1.42 r
+  mhsa_acc_top_inst/linear_k/mm_systolic_inst/genblk1[7].genblk1[0].pe_inst/add_40/U310/Y (AOI21X1)
+                                                          0.02       1.44 f
+  mhsa_acc_top_inst/linear_k/mm_systolic_inst/genblk1[7].genblk1[0].pe_inst/add_40/U47/Y (BUFX2)
+                                                          0.03       1.48 f
+  mhsa_acc_top_inst/linear_k/mm_systolic_inst/genblk1[7].genblk1[0].pe_inst/add_40/U83/Y (AND2X2)
+                                                          0.03       1.51 f
+  mhsa_acc_top_inst/linear_k/mm_systolic_inst/genblk1[7].genblk1[0].pe_inst/add_40/U84/Y (INVX1)
+                                                          0.00       1.51 r
+  mhsa_acc_top_inst/linear_k/mm_systolic_inst/genblk1[7].genblk1[0].pe_inst/add_40/U23/Y (AND2X2)
+                                                          0.04       1.55 r
+  mhsa_acc_top_inst/linear_k/mm_systolic_inst/genblk1[7].genblk1[0].pe_inst/add_40/U303/Y (NAND3X1)
+                                                          0.01       1.56 f
+  mhsa_acc_top_inst/linear_k/mm_systolic_inst/genblk1[7].genblk1[0].pe_inst/add_40/U33/Y (BUFX2)
+                                                          0.03       1.59 f
+  mhsa_acc_top_inst/linear_k/mm_systolic_inst/genblk1[7].genblk1[0].pe_inst/add_40/U87/Y (AND2X2)
+                                                          0.03       1.63 f
+  mhsa_acc_top_inst/linear_k/mm_systolic_inst/genblk1[7].genblk1[0].pe_inst/add_40/U88/Y (INVX1)
+                                                          0.00       1.63 r
+  mhsa_acc_top_inst/linear_k/mm_systolic_inst/genblk1[7].genblk1[0].pe_inst/add_40/U81/Y (AND2X1)
+                                                          0.03       1.66 r
+  mhsa_acc_top_inst/linear_k/mm_systolic_inst/genblk1[7].genblk1[0].pe_inst/add_40/U34/Y (AND2X2)
+                                                          0.03       1.70 r
+  mhsa_acc_top_inst/linear_k/mm_systolic_inst/genblk1[7].genblk1[0].pe_inst/add_40/U35/Y (INVX1)
+                                                          0.01       1.71 f
+  mhsa_acc_top_inst/linear_k/mm_systolic_inst/genblk1[7].genblk1[0].pe_inst/add_40/U85/Y (AND2X2)
+                                                          0.04       1.75 f
+  mhsa_acc_top_inst/linear_k/mm_systolic_inst/genblk1[7].genblk1[0].pe_inst/add_40/U86/Y (INVX1)
+                                                          0.00       1.75 r
+  mhsa_acc_top_inst/linear_k/mm_systolic_inst/genblk1[7].genblk1[0].pe_inst/add_40/U28/Y (AND2X2)
+                                                          0.04       1.78 r
+  mhsa_acc_top_inst/linear_k/mm_systolic_inst/genblk1[7].genblk1[0].pe_inst/add_40/U292/Y (NAND3X1)
+                                                          0.01       1.79 f
+  mhsa_acc_top_inst/linear_k/mm_systolic_inst/genblk1[7].genblk1[0].pe_inst/add_40/U32/Y (BUFX2)
+                                                          0.03       1.83 f
+  mhsa_acc_top_inst/linear_k/mm_systolic_inst/genblk1[7].genblk1[0].pe_inst/add_40/U57/Y (AND2X2)
+                                                          0.04       1.87 f
+  mhsa_acc_top_inst/linear_k/mm_systolic_inst/genblk1[7].genblk1[0].pe_inst/add_40/U290/Y (OAI21X1)
+                                                          0.04       1.91 r
+  mhsa_acc_top_inst/linear_k/mm_systolic_inst/genblk1[7].genblk1[0].pe_inst/add_40/U26/Y (INVX2)
+                                                          0.03       1.93 f
+  mhsa_acc_top_inst/linear_k/mm_systolic_inst/genblk1[7].genblk1[0].pe_inst/add_40/U286/Y (OAI21X1)
+                                                          0.05       1.98 r
+  mhsa_acc_top_inst/linear_k/mm_systolic_inst/genblk1[7].genblk1[0].pe_inst/add_40/U284/Y (AOI21X1)
+                                                          0.02       2.01 f
+  mhsa_acc_top_inst/linear_k/mm_systolic_inst/genblk1[7].genblk1[0].pe_inst/add_40/U141/Y (BUFX2)
+                                                          0.04       2.04 f
+  mhsa_acc_top_inst/linear_k/mm_systolic_inst/genblk1[7].genblk1[0].pe_inst/add_40/U282/Y (XNOR2X1)
+                                                          0.03       2.08 r
+  mhsa_acc_top_inst/linear_k/mm_systolic_inst/genblk1[7].genblk1[0].pe_inst/add_40/SUM[31] (pe_264_DW01_add_J6_0)
+                                                          0.00       2.08 r
+  mhsa_acc_top_inst/linear_k/mm_systolic_inst/genblk1[7].genblk1[0].pe_inst/U65/Y (AND2X1)
+                                                          0.03       2.10 r
+  mhsa_acc_top_inst/linear_k/mm_systolic_inst/genblk1[7].genblk1[0].pe_inst/U66/Y (INVX1)
+                                                          0.02       2.12 f
+  mhsa_acc_top_inst/linear_k/mm_systolic_inst/genblk1[7].genblk1[0].pe_inst/U137/Y (OAI21X1)
+                                                          0.02       2.14 r
+  mhsa_acc_top_inst/linear_k/mm_systolic_inst/genblk1[7].genblk1[0].pe_inst/res_reg[31]/D (DFFPOSX1)
+                                                          0.00       2.14 r
+  data arrival time                                                  2.14
+
+  clock clk (rise edge)                                   6.65       6.65
+  clock network delay (ideal)                             0.00       6.65
+  clock uncertainty                                      -0.10       6.55
+  mhsa_acc_top_inst/linear_k/mm_systolic_inst/genblk1[7].genblk1[0].pe_inst/res_reg[31]/CLK (DFFPOSX1)
+                                                          0.00       6.55 r
+  library setup time                                     -4.41       2.14
+  data required time                                                 2.14
+  --------------------------------------------------------------------------
+  data required time                                                 2.14
+  data arrival time                                                 -2.14
+  --------------------------------------------------------------------------
+  slack (MET)                                                        0.00
+
+
+  Startpoint: soc_addr[17]
+              (input port clocked by clk)
+  Endpoint: soc_data_out[4]
+            (output port clocked by clk)
+  Path Group: in2out
+  Path Type: max
+
+  Point                                    Incr       Path
+  -----------------------------------------------------------
+  clock clk (rise edge)                    0.00       0.00
+  clock network delay (ideal)              0.00       0.00
+  input external delay                     0.20       0.20 r
+  soc_addr[17] (in)                        0.00       0.20 r
+  U1326/Y (OR2X1)                          0.05       0.25 r
+  U1327/Y (INVX1)                          0.02       0.27 f
+  U2020/Y (NAND3X1)                        0.03       0.30 r
+  U1322/Y (BUFX2)                          0.04       0.33 r
+  U2021/Y (OR2X1)                          0.05       0.39 r
+  U1458/Y (AND2X1)                         0.03       0.42 r
+  U1459/Y (INVX1)                          0.02       0.44 f
+  U872/Y (NOR3X1)                          0.05       0.49 r
+  U871/Y (NAND3X1)                         0.02       0.51 f
+  U1464/Y (BUFX2)                          0.04       0.55 f
+  U1189/Y (OR2X1)                          0.04       0.59 f
+  U1190/Y (INVX1)                          0.68       1.27 r
+  U1130/Y (AND2X1)                        -0.03       1.23 r
+  U783/Y (NAND3X1)                         0.02       1.25 f
+  U1495/Y (INVX1)                          0.57       1.82 r
+  U650/Y (AOI22X1)                         0.19       2.01 f
+  U1238/Y (BUFX2)                          0.10       2.12 f
+  U649/Y (NAND2X1)                         0.07       2.19 r
+  soc_data_out[4] (out)                    0.00       2.19 r
+  data arrival time                                   2.19
+
+  clock clk (rise edge)                    6.65       6.65
+  clock network delay (ideal)              0.00       6.65
+  clock uncertainty                       -0.10       6.55
+  output external delay                   -0.20       6.35
+  data required time                                  6.35
+  -----------------------------------------------------------
+  data required time                                  6.35
+  data arrival time                                  -2.19
+  -----------------------------------------------------------
+  slack (MET)                                         4.16
+
+
+  Startpoint: start (input port clocked by clk)
+  Endpoint: mhsa_acc_top_inst/linear_k/mm_systolic_inst/genblk1[0].genblk1[0].pe_inst/res_reg[31]
+            (rising edge-triggered flip-flop clocked by clk)
+  Path Group: in2reg
+  Path Type: max
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock clk (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  input external delay                                    0.20       0.20 r
+  start (in)                                              0.00       0.20 r
+  U1188/Y (AND2X2)                                        0.09       0.29 r
+  mhsa_acc_top_inst/bar2_data_out[63] (mhsa_acc_top)      0.00       0.29 r
+  mhsa_acc_top_inst/linear_k/data_out_bar1[63] (linear_2)
+                                                          0.00       0.29 r
+  mhsa_acc_top_inst/linear_k/mm_systolic_inst/col_bar[63] (mm_systolic_5)
+                                                          0.00       0.29 r
+  mhsa_acc_top_inst/linear_k/mm_systolic_inst/genblk1[0].genblk1[0].pe_inst/col_i[7] (pe_320)
+                                                          0.00       0.29 r
+  mhsa_acc_top_inst/linear_k/mm_systolic_inst/genblk1[0].genblk1[0].pe_inst/mult_40/B[7] (pe_320_DW02_mult_0)
+                                                          0.00       0.29 r
+  mhsa_acc_top_inst/linear_k/mm_systolic_inst/genblk1[0].genblk1[0].pe_inst/mult_40/U3/Y (INVX4)
+                                                          0.02       0.31 f
+  mhsa_acc_top_inst/linear_k/mm_systolic_inst/genblk1[0].genblk1[0].pe_inst/mult_40/U59/Y (OR2X2)
+                                                          0.06       0.37 f
+  mhsa_acc_top_inst/linear_k/mm_systolic_inst/genblk1[0].genblk1[0].pe_inst/mult_40/U50/Y (XNOR2X1)
+                                                          0.07       0.44 r
+  mhsa_acc_top_inst/linear_k/mm_systolic_inst/genblk1[0].genblk1[0].pe_inst/mult_40/S2_2_5/YS (FAX1)
+                                                          0.09       0.53 f
+  mhsa_acc_top_inst/linear_k/mm_systolic_inst/genblk1[0].genblk1[0].pe_inst/mult_40/S2_3_4/YC (FAX1)
+                                                          0.08       0.61 f
+  mhsa_acc_top_inst/linear_k/mm_systolic_inst/genblk1[0].genblk1[0].pe_inst/mult_40/S2_4_4/YC (FAX1)
+                                                          0.09       0.71 f
+  mhsa_acc_top_inst/linear_k/mm_systolic_inst/genblk1[0].genblk1[0].pe_inst/mult_40/S2_5_4/YC (FAX1)
+                                                          0.09       0.80 f
+  mhsa_acc_top_inst/linear_k/mm_systolic_inst/genblk1[0].genblk1[0].pe_inst/mult_40/S2_6_4/YC (FAX1)
+                                                          0.09       0.89 f
+  mhsa_acc_top_inst/linear_k/mm_systolic_inst/genblk1[0].genblk1[0].pe_inst/mult_40/S4_4/YS (FAX1)
+                                                          0.09       0.98 r
+  mhsa_acc_top_inst/linear_k/mm_systolic_inst/genblk1[0].genblk1[0].pe_inst/mult_40/U181/Y (XOR2X1)
+                                                          0.06       1.04 r
+  mhsa_acc_top_inst/linear_k/mm_systolic_inst/genblk1[0].genblk1[0].pe_inst/mult_40/FS_1/A[9] (pe_320_DW01_add_2)
+                                                          0.00       1.04 r
+  mhsa_acc_top_inst/linear_k/mm_systolic_inst/genblk1[0].genblk1[0].pe_inst/mult_40/FS_1/U24/Y (OR2X2)
+                                                          0.05       1.09 r
+  mhsa_acc_top_inst/linear_k/mm_systolic_inst/genblk1[0].genblk1[0].pe_inst/mult_40/FS_1/U59/Y (INVX1)
+                                                          0.03       1.12 f
+  mhsa_acc_top_inst/linear_k/mm_systolic_inst/genblk1[0].genblk1[0].pe_inst/mult_40/FS_1/U70/Y (OAI21X1)
+                                                          0.05       1.17 r
+  mhsa_acc_top_inst/linear_k/mm_systolic_inst/genblk1[0].genblk1[0].pe_inst/mult_40/FS_1/U69/Y (AOI21X1)
+                                                          0.03       1.20 f
+  mhsa_acc_top_inst/linear_k/mm_systolic_inst/genblk1[0].genblk1[0].pe_inst/mult_40/FS_1/U25/Y (BUFX2)
+                                                          0.04       1.24 f
+  mhsa_acc_top_inst/linear_k/mm_systolic_inst/genblk1[0].genblk1[0].pe_inst/mult_40/FS_1/U8/Y (OAI21X1)
+                                                          0.02       1.25 r
+  mhsa_acc_top_inst/linear_k/mm_systolic_inst/genblk1[0].genblk1[0].pe_inst/mult_40/FS_1/U66/Y (AOI21X1)
+                                                          0.02       1.28 f
+  mhsa_acc_top_inst/linear_k/mm_systolic_inst/genblk1[0].genblk1[0].pe_inst/mult_40/FS_1/U39/Y (BUFX2)
+                                                          0.04       1.31 f
+  mhsa_acc_top_inst/linear_k/mm_systolic_inst/genblk1[0].genblk1[0].pe_inst/mult_40/FS_1/U17/Y (XOR2X1)
+                                                          0.04       1.35 f
+  mhsa_acc_top_inst/linear_k/mm_systolic_inst/genblk1[0].genblk1[0].pe_inst/mult_40/FS_1/U15/Y (INVX4)
+                                                          0.02       1.37 r
+  mhsa_acc_top_inst/linear_k/mm_systolic_inst/genblk1[0].genblk1[0].pe_inst/mult_40/FS_1/U16/Y (INVX8)
+                                                          0.03       1.40 f
+  mhsa_acc_top_inst/linear_k/mm_systolic_inst/genblk1[0].genblk1[0].pe_inst/mult_40/FS_1/SUM[13] (pe_320_DW01_add_2)
+                                                          0.00       1.40 f
+  mhsa_acc_top_inst/linear_k/mm_systolic_inst/genblk1[0].genblk1[0].pe_inst/mult_40/PRODUCT[15] (pe_320_DW02_mult_0)
+                                                          0.00       1.40 f
+  mhsa_acc_top_inst/linear_k/mm_systolic_inst/genblk1[0].genblk1[0].pe_inst/add_40/A[31] (pe_320_DW01_add_J6_0)
+                                                          0.00       1.40 f
+  mhsa_acc_top_inst/linear_k/mm_systolic_inst/genblk1[0].genblk1[0].pe_inst/add_40/U49/Y (OR2X2)
+                                                          0.04       1.45 f
+  mhsa_acc_top_inst/linear_k/mm_systolic_inst/genblk1[0].genblk1[0].pe_inst/add_40/U237/Y (INVX1)
+                                                          0.00       1.45 r
+  mhsa_acc_top_inst/linear_k/mm_systolic_inst/genblk1[0].genblk1[0].pe_inst/add_40/U53/Y (OR2X2)
+                                                          0.04       1.49 r
+  mhsa_acc_top_inst/linear_k/mm_systolic_inst/genblk1[0].genblk1[0].pe_inst/add_40/U54/Y (INVX1)
+                                                          0.01       1.50 f
+  mhsa_acc_top_inst/linear_k/mm_systolic_inst/genblk1[0].genblk1[0].pe_inst/add_40/U320/Y (OAI21X1)
+                                                          0.02       1.52 r
+  mhsa_acc_top_inst/linear_k/mm_systolic_inst/genblk1[0].genblk1[0].pe_inst/add_40/U46/Y (AND2X2)
+                                                          0.03       1.56 r
+  mhsa_acc_top_inst/linear_k/mm_systolic_inst/genblk1[0].genblk1[0].pe_inst/add_40/U94/Y (INVX1)
+                                                          0.02       1.57 f
+  mhsa_acc_top_inst/linear_k/mm_systolic_inst/genblk1[0].genblk1[0].pe_inst/add_40/U42/Y (AND2X2)
+                                                          0.04       1.61 f
+  mhsa_acc_top_inst/linear_k/mm_systolic_inst/genblk1[0].genblk1[0].pe_inst/add_40/U311/Y (NAND3X1)
+                                                          0.03       1.64 r
+  mhsa_acc_top_inst/linear_k/mm_systolic_inst/genblk1[0].genblk1[0].pe_inst/add_40/U62/Y (INVX1)
+                                                          0.03       1.66 f
+  mhsa_acc_top_inst/linear_k/mm_systolic_inst/genblk1[0].genblk1[0].pe_inst/add_40/U29/Y (OR2X2)
+                                                          0.04       1.70 f
+  mhsa_acc_top_inst/linear_k/mm_systolic_inst/genblk1[0].genblk1[0].pe_inst/add_40/U10/Y (AND2X2)
+                                                          0.03       1.73 f
+  mhsa_acc_top_inst/linear_k/mm_systolic_inst/genblk1[0].genblk1[0].pe_inst/add_40/U50/Y (INVX1)
+                                                          0.00       1.73 r
+  mhsa_acc_top_inst/linear_k/mm_systolic_inst/genblk1[0].genblk1[0].pe_inst/add_40/U55/Y (AND2X2)
+                                                          0.03       1.76 r
+  mhsa_acc_top_inst/linear_k/mm_systolic_inst/genblk1[0].genblk1[0].pe_inst/add_40/U48/Y (OR2X2)
+                                                          0.04       1.80 r
+  mhsa_acc_top_inst/linear_k/mm_systolic_inst/genblk1[0].genblk1[0].pe_inst/add_40/U232/Y (INVX1)
+                                                          0.02       1.82 f
+  mhsa_acc_top_inst/linear_k/mm_systolic_inst/genblk1[0].genblk1[0].pe_inst/add_40/U300/Y (NAND3X1)
+                                                          0.03       1.85 r
+  mhsa_acc_top_inst/linear_k/mm_systolic_inst/genblk1[0].genblk1[0].pe_inst/add_40/U51/Y (BUFX2)
+                                                          0.03       1.88 r
+  mhsa_acc_top_inst/linear_k/mm_systolic_inst/genblk1[0].genblk1[0].pe_inst/add_40/U73/Y (AND2X2)
+                                                          0.04       1.92 r
+  mhsa_acc_top_inst/linear_k/mm_systolic_inst/genblk1[0].genblk1[0].pe_inst/add_40/U298/Y (OAI21X1)
+                                                          0.02       1.94 f
+  mhsa_acc_top_inst/linear_k/mm_systolic_inst/genblk1[0].genblk1[0].pe_inst/add_40/U45/Y (INVX2)
+                                                          0.02       1.96 r
+  mhsa_acc_top_inst/linear_k/mm_systolic_inst/genblk1[0].genblk1[0].pe_inst/add_40/U36/Y (OAI21X1)
+                                                          0.01       1.97 f
+  mhsa_acc_top_inst/linear_k/mm_systolic_inst/genblk1[0].genblk1[0].pe_inst/add_40/U292/Y (AOI21X1)
+                                                          0.03       2.00 r
+  mhsa_acc_top_inst/linear_k/mm_systolic_inst/genblk1[0].genblk1[0].pe_inst/add_40/U162/Y (BUFX2)
+                                                          0.04       2.04 r
+  mhsa_acc_top_inst/linear_k/mm_systolic_inst/genblk1[0].genblk1[0].pe_inst/add_40/U290/Y (XNOR2X1)
+                                                          0.04       2.08 r
+  mhsa_acc_top_inst/linear_k/mm_systolic_inst/genblk1[0].genblk1[0].pe_inst/add_40/SUM[31] (pe_320_DW01_add_J6_0)
+                                                          0.00       2.08 r
+  mhsa_acc_top_inst/linear_k/mm_systolic_inst/genblk1[0].genblk1[0].pe_inst/U69/Y (AND2X1)
+                                                          0.03       2.10 r
+  mhsa_acc_top_inst/linear_k/mm_systolic_inst/genblk1[0].genblk1[0].pe_inst/U70/Y (INVX1)
+                                                          0.02       2.12 f
+  mhsa_acc_top_inst/linear_k/mm_systolic_inst/genblk1[0].genblk1[0].pe_inst/U141/Y (OAI21X1)
+                                                          0.02       2.14 r
+  mhsa_acc_top_inst/linear_k/mm_systolic_inst/genblk1[0].genblk1[0].pe_inst/res_reg[31]/D (DFFPOSX1)
+                                                          0.00       2.14 r
+  data arrival time                                                  2.14
+
+  clock clk (rise edge)                                   6.65       6.65
+  clock network delay (ideal)                             0.00       6.65
+  clock uncertainty                                      -0.10       6.55
+  mhsa_acc_top_inst/linear_k/mm_systolic_inst/genblk1[0].genblk1[0].pe_inst/res_reg[31]/CLK (DFFPOSX1)
+                                                          0.00       6.55 r
+  library setup time                                     -4.41       2.14
+  data required time                                                 2.14
+  --------------------------------------------------------------------------
+  data required time                                                 2.14
+  data arrival time                                                 -2.14
+  --------------------------------------------------------------------------
+  slack (MET)                                                        0.00
+
+
+  Startpoint: mhsa_acc_top_inst/state_reg[1]
+              (rising edge-triggered flip-flop clocked by clk)
+  Endpoint: done (output port clocked by clk)
+  Path Group: reg2out
+  Path Type: max
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock clk (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  mhsa_acc_top_inst/state_reg[1]/CLK (DFFSR)              0.00 #     0.00 r
+  mhsa_acc_top_inst/state_reg[1]/Q (DFFSR)                0.14       0.14 r
+  mhsa_acc_top_inst/U1746/Y (BUFX2)                       0.04       0.19 r
+  mhsa_acc_top_inst/U1807/Y (INVX1)                       0.03       0.22 f
+  mhsa_acc_top_inst/U129/Y (NOR3X1)                       0.04       0.26 r
+  mhsa_acc_top_inst/done (mhsa_acc_top)                   0.00       0.26 r
+  done (out)                                              0.00       0.26 r
+  data arrival time                                                  0.26
+
+  clock clk (rise edge)                                   6.65       6.65
+  clock network delay (ideal)                             0.00       6.65
+  clock uncertainty                                      -0.10       6.55
+  output external delay                                  -0.20       6.35
+  data required time                                                 6.35
+  --------------------------------------------------------------------------
+  data required time                                                 6.35
+  data arrival time                                                 -0.26
+  --------------------------------------------------------------------------
+  slack (MET)                                                        6.09
+
+
+1
